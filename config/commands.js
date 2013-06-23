@@ -142,7 +142,8 @@
  *
  * @license MIT license
  */
-
+var canpet = true; 
+var denied = "Error: You are not allowed to use this command.";
 var commands = exports.commands = {
 
 	ip: 'whois',
@@ -206,6 +207,114 @@ var commands = exports.commands = {
 		this.sendReply('|raw|'+output);
 	},
 
+
+//these commands go in config/commands.js
+//look what i did -skrappy
+	/*********************************************************
+	 * MOTD
+	 *********************************************************/
+	motd: function(target, room, user) {					
+		if (!this.canTalk()) return false;
+		if ((!this.canBroadcast())||(!this.can('mute'))) {
+			return this.sendReply(denied);
+		}
+		else if ((target==="")||(target.replace(/\s/g,"") == "")) {
+			return this.sendReply('A Message of the Day should, you know, contain a message :)');
+		} 
+		else if (!(room.id === 'lobby')) {
+			return this.sendReply('A Message of the Day can only be set in the lobby.');
+		} 
+		else {
+			room.motd = target;
+			room.motd = target.replace(/(<([^>]+)>)/ig,"");
+			room.motdSet = user.name;
+			this.addModCommand('|raw|<div style="background-color:#EEFFEE;border:1px solid #6688AA;padding:2px 4px">' +
+								'<b>' + user.name + ' has set the Message of the Day to: </b><br />' + room.motd + '</div>');				
+		}
+	},
+
+	clearmotd: function(target, room, user) {		
+		if (!this.canTalk()) return false;
+		if ((!this.canBroadcast())||(!this.can('mute'))) {
+			return this.sendReply(denied);
+		}
+		else if (!(room.id === 'lobby')) {
+			return this.sendReply('A Message of the Day can only be removed in the lobby.');
+		} 
+		else if (room.motd===""){
+			return this.sendReply('|raw|<div><i>There currently is no Message of the Day</i></div>');
+		}
+		else {
+			room.motd = "";
+			room.motdSet = user.name;
+			room.play = 0;
+			this.addModCommand('|raw|<div style="background-color:#EEFFEE;border:1px solid #6688AA;padding:2px 4px">' +
+			'<b>' + room.motdSet + ' has removed the Message of the Day</b><br /></div>');
+		}
+	},
+	
+	motdfreq: function(target, room, user) {
+		if (!this.canTalk()) return false;
+		if ((!this.canBroadcast())||(!this.can('mute'))) {
+			return this.sendReply(denied);
+		}
+		else if (isNaN(target)) {
+			return this.sendReply('The syntax for this command is /motdfreq #');
+		}
+		else if (!(room.id === 'lobby')) {
+			return this.sendReply('A Message of the Day\'s frequency can only be set in the lobby.');
+		} 
+		else {
+			room.motdfreq = parseInt(target);
+			room.motdcount = room.motdfreq - 1;
+			this.addModCommand('|raw|<div style="background-color:#EEFFEE;border:1px solid #6688AA;padding:2px 4px">' +
+			'<b>' + user.name + ' has set the Message of the Day frequency to: </b><br />' + room.motdfreq + '</div>');
+		}
+	},
+
+	checkmotd: function(target, room, user) {		
+		if (!this.canTalk()) return false;
+		if (!this.canBroadcast()) {
+			return this.sendReply(denied);
+		}
+		else if (!(room.id === 'lobby')) {
+			return this.sendReply('A Message of the Day can only be checked in the lobby.');
+		} 
+		else if ((room.motd==="")||(room.motd===undefined)){
+			return this.sendReply('|raw|<div><i>There currently is no Message of the Day</i></div>');
+		}
+		else if (room.play===1){		
+			return this.sendReply('|raw|<div style="background-color:#EEFFEE;border:1px solid #6688AA;padding:2px 4px">' +
+			'<i>' + room.motdSet + ' has set the Message of the Day to: </i>' + room.motd + ' <i> (paused)</i></div>');
+		}
+		else {		
+			return this.sendReply('|raw|<div style="background-color:#EEFFEE;border:1px solid #6688AA;padding:2px 4px">' +
+			'<i>' + room.motdSet + ' has set the Message of the Day to: </i>' + room.motd + '</div>');
+		}
+	},
+
+	pmotd: function(target, room, user) {					
+		if (!this.canTalk()) return false;
+		if ((!this.canBroadcast())||(!this.can('mute'))) {
+			return this.sendReply(denied);
+		}
+		else if ((room.motd === "")||(room.motd === undefined)) {
+			return this.sendReply('There currently is no Message of the Day to pause');
+		} 
+		else if (!(room.id === 'lobby')) {
+			return this.sendReply('A Message of the Day can only be set in the lobby.');
+		} 
+		else if ((room.play===0)||(room.play===undefined)) {
+			room.play = 1;
+			this.addModCommand('|raw|<div style="background-color:#EEFFEE;border:1px solid #6688AA;padding:2px 4px">' +
+								'<b><i>' + user.name + ' has paused the Message of the Day</b></i></div>');				
+		}
+		else {
+			room.play = 0;
+			this.addModCommand('|raw|<div style="background-color:#EEFFEE;border:1px solid #6688AA;padding:2px 4px">' +
+								'<b><i>' + user.name + ' has resumed the Message of the Day broadcast</b></i></div>');				
+		}
+	},	
 	/*********************************************************
 	 * Shortcuts
 	 *********************************************************/
@@ -256,6 +365,419 @@ var commands = exports.commands = {
 
 		this.sendReply(data);
 	},
+                               ranks: function(target, room, user) {
+		if (!this.canBroadcast()) return;
+		this.sendReplyBox('+ <b>Knight</b> - Knights waist there time trying to use L coomands when they be using !<br />' +
+			'% <b>Bishop</b> - Bishops live life in a way where they hope for this dumb sign to go away and become a rook<br />' +
+			'@ <b>Rook</b> - The Rook bans and mutes when needed in a up-down-left-right position<br />' +
+			'&amp; <b>Queen</b> - Queens server the king at all cost and makes new Rooks,Bishops ,and Knights<br />'+
+			'~ <b>King</b> - Kings rule all with no rules');
+	},
+                                              ffg: 'Flamingfrozengnome',
+                ffg: function(target, room, user) {
+                if (!this.canBroadcast()) return;
+                this.sendReplyBox('<b>Information on Elite Four Flaminfrozengnome:</b><br />'+
+                                        'Type: Sand<br />' +
+                                        'Tier: Over Used (OU)<br />' +
+                                        'Signature Pokemon: Tyranitar<br />' +
+                                        '<img src="http://www.poke-amph.com/black-white/sprites/small/248.png"><br />' +
+                                        'Badge: Ruins Badge<br />' +
+                                        '<img src="http://imgur.com/3gSug1F.png">');
+                                },
+       
+                        ca: 'coolasian',
+                coolasian: function(target, room, user) {
+                if (!this.canBroadcast()) return;
+                this.sendReplyBox('<b>Information on Elite Four CoolAsian:</b><br />'+
+                                        'Type: Rain<br />' +
+                                        'Tier: Over Used (OU)<br />' +
+                                        'Signature Pokemon: Politoed<br />' +
+                                        '<img src="http://www.poke-amph.com/diamondpearl/sprites/186.png"><br />' +
+                                        'Badge: The Drizzle Badge<br />' +
+                                        '<img src="http://imgur.com/dJta4FW.png">');
+                                },
+                               
+                                                rq: 'ragequazaplays',
+                                                ragequaza: 'ragequazaplays',
+                                        ragequazaplays: function(target, room, user) {
+                if (!this.canBroadcast()) return;
+                this.sendReplyBox('<b>Information on Elite Four RageQuazaPlays:</b><br />'+
+                                            'Type: Clear<br />' +
+                                            'Tier: OU (Overused)<br />' +
+                                            'Signature Pokemon: Rayquaza<br />' +
+                                            '<img src="http://www.poke-amph.com/black-2-white-2/sprites/large/384.png"><br />' +
+                                            'Badge: Rage Badge<br />' +
+                                            '<img src="http://imgur.com/Dl1Vnpv.png"></div>');
+    
+                                },
+								          ttp: 'ttp pokepaul',
+                                                pokepaulttp: 'pokepaul',
+                                        ttp: function(target, room, user) {
+                if (!this.canBroadcast()) return;
+                this.sendReplyBox('<b>Information on Gym Leader TTP Pokepaul:</b><br />'+
+                                            'Type:Sun <br />' +
+                                            'Tier: OU (Overused)<br />' +
+                                            'Signature Pokemon: Leafeon<br />' +
+                                            '<img src="http://www.poke-amph.com/black-2-white-2/sprites/large/470.png"><br />' +
+                                            'Badge: Leaf Badge<br />' +
+                                            '<img src="http://i1344.photobucket.com/albums/p660/Pokepaul/leafbadge_zps1f3602dc.png"></div>');
+    
+                                },
+								  havinfun: 'havinfun',
+                                                havinfun: 'havinfun',
+                                        havinfun: function(target, room, user) {
+                if (!this.canBroadcast()) return;
+                this.sendReplyBox('<b>Information on Gym Leader Havinfun85:</b><br />'+
+                                            'Type:Sand <br />' +
+                                            'Tier: OU (Overused)<br />' +
+                                            'Signature Pokemon: Jirachi<br />' +
+                                            '<img src="http://i1221.photobucket.com/albums/dd467/igufreitas/shinyjirachi.gif"><br />' +
+                                            'Badge: Ironclad Badge<br />' +
+                                            '<img src="http://fc01.deviantart.net/fs70/f/2012/086/7/5/scizor_badge_by_pokebadges-d4u5bz6.png"></div>');
+    
+                                },
+                                         pierce: 'pierce',
+                                                pierce: 'pierce',
+                                        pierce: function(target, room, user) {
+                if (!this.canBroadcast()) return;
+                this.sendReplyBox('<b>Information on Elite Four Pierce:</b><br />'+
+                                            'Type:Hail <br />' +
+                                            'Tier: OU (Overused)<br />' +
+                                            'Signature Pokemon: Abomasnow<br />' +
+                                            '<img src="http://i1012.photobucket.com/albums/af246/Highvoltage_07/Pokemon/12-abomasnow.jpg"><br />' +
+                                            'Badge: Snowflake Badge<br />' +
+                                            '<img src="http://i1304.photobucket.com/albums/s526/pepsicmb/BDs/SnowflakeBadge_zpsd9ac2e9a.png"></div>');
+    
+                                },
+								          rp: 'realpresent',
+                                                realpresent: 'rp',
+                                        rp: function(target, room, user) {
+                if (!this.canBroadcast()) return;
+                this.sendReplyBox('<b>Information on Gym Leader RealPresent:</b><br />'+
+                                            'Type: Sandstorm <br />' +
+                                            'Tier: OU (Overused)<br />' +
+                                            'Signature Pokemon: Latias<br />' +
+                                            '<img src="http://images.wikia.com/pokemon/images/e/ee/Latias.gif"><br />' +
+                                            'Badge: Sandstorm Badge<br />' +
+                                            '<img src="http://th1215.photobucket.com/albums/cc519/Erthefrarg/th_Latiasbadge.png"></div>');
+    
+                                },
+								          nam: 'namine',
+                                                namine: 'nam',
+                                        nam: function(target, room, user) {
+                if (!this.canBroadcast()) return;
+                this.sendReplyBox('<b>Information on Elite Four Namine:</b><br />'+
+                                            'Type:Rain <br />' +
+                                            'Tier: OU (Overused)<br />' +
+                                            'Signature Pokemon: Zapdos<br />' +
+                                            '<img src="http://pokex.weebly.com/uploads/3/9/2/7/3927910/1129320.gif"><br />' +
+                                            'Badge: Oblivion Badge<br />' +
+                                            '<img src=""></div>');
+    
+                                },
+                                                idpt: 'idontplaythis',
+                                        idontplaythis: function(target, room, user) {
+                if (!this.canBroadcast()) return;
+                this.sendReplyBox('<b>Information on Elite Four i dont play this:</b><br />'+
+                                        'Type: Sun<br />' +
+                                        'Tier: Over Used (OU)<br />' +
+                                        'Signature Pokemon: Sawsbuck<br />' +
+                                        '<img src="http://www.poke-amph.com/black-2-white-2/pokedex/pokemon/sawsbuck.png"><br />' +
+                                        'Badge: Inferno Badge<br />' +
+                                        '<img src="http://imgur.com/IQiFQLM.png">');
+                                },
+                               
+                                                ryun: 'ryuniclus',
+                                        ryuniclus: function(target, room, user) {
+                if (!this.canBroadcast()) return;
+                this.sendReplyBox('<b>Information on Gym Leader Ryuniclus:</b><br />'+
+                                        'Type: Clear Skies (Trick Room)<br />' +
+                                        'Tier: OverUsed (Ou)<br />' +
+                                        'Signature Pokemon: Medicham<br />' +
+                                        '<img src="http://www.poke-amph.com/black-white/sprites/small/308.png"><br />' +
+                                        'Badge: Illusion Badge<br />' +
+                                        '<img src="">');
+                                },
+                               
+                                        brunoo: function(target, room, user) {
+                if (!this.canBroadcast()) return;
+                this.sendReplyBox('<b>Information on Gym Leader Brunoo:</b><br />'+
+                                        'Type: Clear Skies<br />' +
+                                        'Tier: Over Used (OU)<br />' +
+                                        'Signature Pokemon: Weavile<br />' +
+                                        '<img src="http://www.poke-amph.com/black-white/sprites/small/461.png"><br />' +
+                                        'Badge: Speed Badge<br />' +
+                                        '<img src="http://imgur.com/df02xVw.png">');
+                                },
+                               
+                                        jake: function(target, room, user) {
+                if (!this.canBroadcast()) return;
+                this.sendReplyBox('<b>Information on Gym Leader Jake:</b><br />'+
+                                        'Type: Sand<br />' +
+                                        'Tier: Over Used (OU)<br />' +
+                                        'Signature Pokemon: Latios<br />' +
+                                        '<img src="http://www.poke-amph.com/black-white/sprites/small/381.png"><br />' +
+                                        'Badge: Soul Badge<br />' +
+                                        '<img src="">');
+                                },
+                               
+                                        bandi: function(target, room, user) {
+                if (!this.canBroadcast()) return;
+                this.sendReplyBox('<b>Information on Champion Bandicam:</b><br />'+
+                                        'Type: Hail<br />' +
+                                        'Tier: Over Used (OU)<br />' +
+                                        'Signature Pokemon: Abomasnow<br />' +
+                                        '<img src="http://www.poke-amph.com/black-white/sprites/small/460.png"><br />' +
+                                        'Badge: Snowflake King Champion Badge<br />' +
+                                        '<img src="http://imgur.com/iPOxCYO.png">');
+                                },
+                               
+                                        crispy: 'crispyhann',
+                                                crispyhann: function(target, room, user) {
+                if (!this.canBroadcast()) return;
+                this.sendReplyBox('<b>Information on Gym Leader crispyhann:</b><br />'+
+                                        'Type: Clear Skies<br />' +
+                                        'Tier: Over Used (OU)<br />' +
+                                        'Signature Pokemon: Salamence<br />' +
+                                        '<img src="http://www.poke-amph.com/black-white/sprites/small/373.png"><br />' +
+                                        'Badge: Dark Latios Badge<br />' +
+                                        '<img src="http://imgur.com/RFk19FI.png">');
+                                },
+       
+                                                matt: 'matts3ds',
+                                        matts3ds: function(target, room, user) {
+                if (!this.canBroadcast()) return;
+                this.sendReplyBox('<b>Information on Gym Leader matts3ds:</b><br />'+
+                                            'Type: Rain<br />' +
+                                            'Tier: Over Used (OU)<br />' +
+                                            'Signature Pokemon: Blastoise<br />' +
+                                            '<img src="http://www.poke-amph.com/black-white/sprites/small/009.png"><br />' +
+                                            'Badge: Blast Badge<br />' +
+                                            '<img src="http://i1344.photobucket.com/albums/p660/Pokepaul/BlastBadge_zpse76ef875.png">');
+                                },
+                               cstmavs: function(target, room, user) {
+                                    if (!this.canBroadcast()) return;
+                                    this.sendReplyBox('<a href = "http://thepowerhouseserverforums.webs.com/apps/forums/topics/show/9069247-avatars?next="target=_blank>Avatar forum</a>');
+									
+	                                  },
+                                    
+                                                ak: 'angelkeldeo',
+                                        angelkeldeo: function(target, room, user) {
+                if (!this.canBroadcast()) return;
+                this.sendReplyBox('<b>Information on Gym Leader AngelKeldeo:</b><br />'+
+                                            'Type: Rain<br />' +
+                                            'Tier: Over Used (OU)<br />' +
+                                            'Signature Pokemon: Keldeo<br />' +
+                                            '<img src="http://www.poke-amph.com/black-white/sprites/small/647.png"><br />' +
+                                            'Badge: Brave Badge<br />' +
+                                            '<img src="">');
+                                },
+                               
+                                                zac: 'zact94',
+                                        zact94: function(target, room, user) {
+                if (!this.canBroadcast()) return;
+                this.sendReplyBox('<b>Information on Gym Leader ZacT94:</b><br />'+
+                                            'Type: Clear Skies<br />' +
+                                            'Tier: Over Used (OU)<br />' +
+                                            'Signature Pokemon: Infernape<br />' +
+                                            '<img src="http://www.poke-amph.com/black-white/sprites/small/392.png"><br />' +
+                                            'Badge: Oz Badge<br />' +
+                                            '<img src="">');
+	},									
+											 leagueintro: function(target, room, user) {
+                                if (!this.canBroadcast()) return;
+                                this.sendReplyBox('<b><font color="red">Bandicam League Rules:</font></b><ol>' +
+                        '<li>Challenger or not NO STALLING at all.</li>' +
+                        '<li>Gym leaders can have any team, just make sure it is allowed by an Elite 4 member.</li>' +
+                        '<li>If you are a challenger, export a team in written form on this and send the link to an Elite 4 member to verify your team.</li>' +
+                        '<li>If  you beat a gym leader, favorite or bookmark their badge as you will have to show the badges to gain access to the Elite 4.</li>' +
+                        '<li>You can only battle a gym leader or Elite 4 once per day.</li>' +
+                        '<li>Gym leaders cannot change their gym team. If they want to, they need permission from an Elite 4 member.</li>' +
+                        '<li>Challengers: Once you have started the league with a team, you cannot change it.</li>' +
+                        '<li>Have fun!!!</li>' +
+                        '</ol>' +
+                        'Website:<a href="http://creatorcoolasian.wix.com/thebandicamleague"target=_blank>Bandicam League</a>');
+                                        },
+										 bye: function(target, room, user) {
+                                if (!user.can('promote')) {
+                                        this.sendReply('/bye - Access denied.');
+                                        }
+                                else {
+                                        this.sendReplyBox('<marquee behavior="scroll"><font size = 10 color="blue">Bye~</font></marquee>');
+                                        }
+                                },
+                                                           
+  brb: function(target, room, user) {
+                                if (!user.can('promote')) {
+                                        this.sendReply('/brb - Access denied.');
+                                        }
+                                else {
+                                        this.sendReplyBox('<marquee behavior="scroll"><font size = 10 color="blue">I Will Be Right Back</font></marquee>');
+                                        }
+                                },
+                                                             
+  pom: function(target, room, user) {
+                                if (!user.can('hotpatch')) {
+                                        this.sendReply('/promoofmonth - Access denied.');
+                                        }
+                                else {
+                                        this.sendReplyBox('<marquee behavior="scroll"><font size = 10 color="blue">Promotion of the month votes no voting yourself, pm Bandicam CoolAsian or TalkTakesTime to vote</font></marquee>');
+                                        }
+                                },
+                                
+ cabrb: function(target, room, user) {
+                                if (!user.can('promote')) {
+                                        this.sendReply('/applause - Access denied.');
+                                        }
+                                else {
+                                        this.sendReplyBox('<marquee behavior="scroll"><font size = 10 color="blue">coolasian will be back in jiffy</font></marquee>');
+                                        }
+                                },
+
+                                       
+                applause: function(target, room, user) {
+                                if (!user.can('promote')) {
+                                        this.sendReply('/applause - Access denied.');
+                                        }
+                                else {
+                                        this.sendReplyBox('<marquee behavior="scroll"><font size = 10 color="blue">APPLAUSE!</font></marquee>');
+                                        }
+                                },
+                               
+                        welcome: function(target, room, user) {
+                                if (!user.can('promote')) {
+                                        this.sendReply('/welcome - Access denied.');
+                                        }
+                                else {
+                                        this.sendReplyBox('<marquee behavior="scroll"><font size = 10 color="blue">Welcome to The Powerhouse!</font></marquee>');
+                                        }
+                                },
+
+				peton: function(target, room, user) {
+if(!user.can('mute')) {
+return this.sendReply('but it failed.');
+}
+else {
+if(canpet == true) {
+return this.sendReply('/pet is already on.');
+}
+if(canpet == false) {
+this.sendReply('You turned on /pet.');
+canpet = true;
+}
+}
+},
+
+petoff: function(target, room, user) {
+if(!user.can('mute')){
+return this.sendReply('but it failed.');
+}
+else {
+if(canpet == false) {
+return this.sendReply('/pet is already off.');
+}
+if(canpet == true) {
+this.sendReply('You turned off /pet.');
+canpet = false;
+}
+}
+},
+
+pet: function(target, room, user) {
+if(canpet == false) {
+return this.sendReply('but it failed.');
+}
+if(canpet == true) {
+         if (!target) {
+                 return this.sendReply('Please specify a user who you\'d like to pet.');
+         }
+         var targetUser = Users.get(target);
+         if (targetUser) {
+                 target = targetUser.userid;
+                 }
+         else {
+                 return this.sendReply('The user \'' + target + '\' doesn\'t exist.');
+         }
+if(!this.canTalk()) {
+return this.sendReply('You cannot use this command because you are muted.');
+}
+         this.add(user.name + ' pet ' + targetUser.name + '.');
+}
+         },
+		 spon: function(target, room, user) {
+if(!user.can('mute')) {
+return this.sendReply('You do not have the authority to use this command.');
+}
+else {
+if(canpet == true) {
+return this.sendReply('/sp is already on.');
+}
+if(canpet == false) {
+this.sendReply('You turned on /sp.');
+canpet = true;
+}
+}
+},
+
+spoff: function(target, room, user) {
+if(!user.can('mute')){
+return this.sendReply('but it failed.');
+}
+else {
+if(canpet == false) {
+return this.sendReply('but it failed.');
+}
+if(canpet == true) {
+this.sendReply('You turned off /sp.');
+canpet = false;
+}
+}
+},
+
+sp: function(target, room, user) {
+if(canpet == false) {
+return this.sendReply('but it failed.');
+}
+if(canpet == true) {
+         if (!target) {
+                 return this.sendReply('Please specify a user who you\'d like to sucker punch.');
+         }
+         var targetUser = Users.get(target);
+         if (targetUser) {
+                 target = targetUser.userid;
+                 }
+         else {
+                 return this.sendReply('The user \'' + target + '\' doesn\'t exist.');
+         }
+if(!this.canTalk()) {
+return this.sendReply('but it failed.');
+}
+         this.add(user.name + ' sucker punch ' + targetUser.name + '.');
+}
+         },
+
+    staff: function(target, room, user) {
+                                    if (!this.canBroadcast()) return;
+                                    this.sendReplyBox('<a href = "https://docs.google.com/document/d/1LaK5vRlYAfo84BLcq-DqtMvrWCrq8Xt4ll9L6qNcAwI/edit"target=_blank>Staff</a>');
+                                    },
+
+tph: function(target, room, user) {
+                                    if (!this.canBroadcast()) return;
+                                    this.sendReplyBox('<a href = " http://www.smogon.com/forums/group.php?groupid=2515"target=_blank>Our Group</a>');
+},
+rule: 'rules',
+	rules: function(target, room, user) {
+		if (!this.canBroadcast()) return;
+		this.sendReplyBox('Please follow thepowerhouses rules:<br />' +
+			'- <a href="https://docs.google.com/document/d/1XfzhIFbSEra6syVzwiBgozMSKTJLqeglI68Nwbvx0II/edit" target="_blank">Rules</a><br />' +
+			'</div>');
+},	
+forums: function(target, room, user) {
+                                    if (!this.canBroadcast()) return;
+                                    this.sendReplyBox('<a href = "http://thepowerhouseserverforums.webs.com/"target=_blank>Forums</a>');
+},
+
+                                    
 
 	learnset: 'learn',
 	learnall: 'learn',
@@ -416,18 +938,10 @@ var commands = exports.commands = {
 		this.sendReplyBox('Uptime: <b>'+uptimeText+'</b>');
 	},
 
-	groups: function(target, room, user) {
-		if (!this.canBroadcast()) return;
-		this.sendReplyBox('+ <b>Voice</b> - They can use ! commands like !groups, and talk during moderated chat<br />' +
-			'% <b>Driver</b> - The above, and they can also mute and lock users and check for alts<br />' +
-			'@ <b>Moderator</b> - The above, and they can ban users<br />' +
-			'&amp; <b>Leader</b> - The above, and they can promote moderators and force ties<br />'+
-			'~ <b>Administrator</b> - They can do anything, like change what this message says');
-	},
 
 	opensource: function(target, room, user) {
 		if (!this.canBroadcast()) return;
-		this.sendReplyBox('Pokemon Showdown is open source:<br />- Language: JavaScript<br />- <a href="https://github.com/Zarel/Pokemon-Showdown/commits/master">What\'s new?</a><br />- <a href="https://github.com/Zarel/Pokemon-Showdown">Server source code</a><br />- <a href="https://github.com/Zarel/Pokemon-Showdown-Client">Client source code</a>');
+		this.sendReplyBox('Pokemon Showdown is open source:<br />- Language: JavaScript<br />- <a href="https://github.com/Zarel/Pokemon-Showdown/commits/master" target="_blank">What\'s new?</a><br />- <a href="https://github.com/Zarel/Pokemon-Showdown" target="_blank">Server source code</a><br />- <a href="https://github.com/Zarel/Pokemon-Showdown-Client" target="_blank">Client source code</a>');
 	},
 
 	avatars: function(target, room, user) {
@@ -438,26 +952,26 @@ var commands = exports.commands = {
 	introduction: 'intro',
 	intro: function(target, room, user) {
 		if (!this.canBroadcast()) return;
-		this.sendReplyBox('New to competitive pokemon?<br />' +
-			'- <a href="http://www.smogon.com/dp/articles/intro_comp_pokemon">An introduction to competitive pokemon</a><br />' +
-			'- <a href="http://www.smogon.com/bw/articles/bw_tiers">What do "OU", "UU", etc mean?</a><br />' +
-			'- <a href="http://www.smogon.com/bw/banlist/">What are the rules for each format? What is "Sleep Clause"?</a>');
+		this.sendReplyBox('New to ThePowerHouse<br />' +
+			'- <a href="https://docs.google.com/document/d/1LaK5vRlYAfo84BLcq-DqtMvrWCrq8Xt4ll9L6qNcAwI" target="_blank">Staff</a><br />' +
+			'- <a href="https://docs.google.com/document/d/1XfzhIFbSEra6syVzwiBgozMSKTJLqeglI68Nwbvx0II" target="_blank">Rules</a><br />' +
+			'- <a href="http://thepowerhouseserverforums.webs.com/apps/forums/" target="_blank">Forums</a>');
 	},
 
 	calculator: 'calc',
 	calc: function(target, room, user) {
 		if (!this.canBroadcast()) return;
 		this.sendReplyBox('Pokemon Showdown! damage calculator. (Courtesy of Honko)<br />' +
-			'- <a href="http://pokemonshowdown.com/damagecalc/">Damage Calculator</a>');
+			'- <a href="http://pokemonshowdown.com/damagecalc/" target="_blank">Damage Calculator</a>');
 	},
 
 	cap: function(target, room, user) {
 		if (!this.canBroadcast()) return;
 		this.sendReplyBox('An introduction to the Create-A-Pokemon project:<br />' +
-			'- <a href="http://www.smogon.com/cap/">CAP project website and description</a><br />' +
-			'- <a href="http://www.smogon.com/forums/showthread.php?t=48782">What Pokemon have been made?</a><br />' +
-			'- <a href="http://www.smogon.com/forums/showthread.php?t=3464513">Talk about the metagame here</a><br />' +
-			'- <a href="http://www.smogon.com/forums/showthread.php?t=3466826">Practice BW CAP teams</a>');
+			'- <a href="http://www.smogon.com/cap/" target="_blank">CAP project website and description</a><br />' +
+			'- <a href="http://www.smogon.com/forums/showthread.php?t=48782" target="_blank">What Pokemon have been made?</a><br />' +
+			'- <a href="http://www.smogon.com/forums/showthread.php?t=3464513" target="_blank">Talk about the metagame here</a><br />' +
+			'- <a href="http://www.smogon.com/forums/showthread.php?t=3466826" target="_blank">Practice BW CAP teams</a>');
 	},
 
 	om: 'othermetas',
@@ -468,39 +982,39 @@ var commands = exports.commands = {
 		var matched = false;
 		if (!target || target === 'all') {
 			matched = true;
-			buffer += '- <a href="http://www.smogon.com/forums/forumdisplay.php?f=206">Information on the Other Metagames</a><br />';
+			buffer += '- <a href="http://www.smogon.com/forums/forumdisplay.php?f=206" target="_blank">Information on the Other Metagames</a><br />';
 		}
 		if (target === 'all' || target === 'hackmons') {
 			matched = true;
-			buffer += '- <a href="http://www.smogon.com/forums/showthread.php?t=3475624">Hackmons</a><br />';
+			buffer += '- <a href="http://www.smogon.com/forums/showthread.php?t=3475624" target="_blank">Hackmons</a><br />';
 		}
 		if (target === 'all' || target === 'balancedhackmons' || target === 'bh') {
 			matched = true;
-			buffer += '- <a href="http://www.smogon.com/forums/showthread.php?t=3463764">Balanced Hackmons</a><br />';
+			buffer += '- <a href="http://www.smogon.com/forums/showthread.php?t=3463764" target="_blank">Balanced Hackmons</a><br />';
 		}
 		if (target === 'all' || target === 'glitchmons') {
 			matched = true;
-			buffer += '- <a href="http://www.smogon.com/forums/showthread.php?t=3467120">Glitchmons</a><br />';
+			buffer += '- <a href="http://www.smogon.com/forums/showthread.php?t=3467120" target="_blank">Glitchmons</a><br />';
 		}
 		if (target === 'all' || target === 'tiershift' || target === 'ts') {
 			matched = true;
-			buffer += '- <a href="http://www.smogon.com/forums/showthread.php?t=3479358">Tier Shift</a><br />';
+			buffer += '- <a href="http://www.smogon.com/forums/showthread.php?t=3479358" target="_blank">Tier Shift</a><br />';
 		}
 		if (target === 'all' || target === 'seasonalladder' || target === 'seasonal') {
 			matched = true;
-			buffer += '- <a href="http://www.smogon.com/sim/seasonal">Seasonal Ladder</a><br />';
+			buffer += '- <a href="http://www.smogon.com/sim/seasonal" target="_blank">Seasonal Ladder</a><br />';
 		}
 		if (target === 'all' || target === 'smogondoubles' || target === 'doubles') {
 			matched = true;
-			buffer += '- <a href="http://www.smogon.com/forums/showthread.php?t=3476469">Smogon Doubles</a><br />';
+			buffer += '- <a href="http://www.smogon.com/forums/showthread.php?t=3476469" target="_blank">Smogon Doubles</a><br />';
 		}
 		if (target === 'all' || target === 'vgc2013' || target === 'vgc') {
 			matched = true;
-			buffer += '- <a href="http://www.smogon.com/forums/showthread.php?t=3471161">VGC 2013</a><br />';
+			buffer += '- <a href="http://www.smogon.com/forums/showthread.php?t=3471161" target="_blank">VGC 2013</a><br />';
 		}
 		if (target === 'all' || target === 'omotm' || target === 'omofthemonth' || target === 'month') {
 			matched = true;
-			buffer += '- <a href="http://www.smogon.com/forums/showthread.php?t=3481155">OM of the Month</a>';
+			buffer += '- <a href="http://www.smogon.com/forums/showthread.php?t=3481155" target="_blank">OM of the Month</a>';
 		}
 		if (!matched) {
 			return this.sendReply('The Other Metas entry "'+target+'" was not found. Try /othermetas or /om for general help.');
@@ -508,13 +1022,8 @@ var commands = exports.commands = {
 		this.sendReplyBox(buffer);
 	},
 
-	rule: 'rules',
-	rules: function(target, room, user) {
-		if (!this.canBroadcast()) return;
-		this.sendReplyBox('Please follow the rules:<br />' +
-			'- <a href="http://pokemonshowdown.com/rules">Rules</a><br />' +
-			'</div>');
-	},
+	
+	
 
 	faq: function(target, room, user) {
 		if (!this.canBroadcast()) return;
@@ -523,27 +1032,27 @@ var commands = exports.commands = {
 		var matched = false;
 		if (!target || target === 'all') {
 			matched = true;
-			buffer += '<a href="http://www.smogon.com/sim/faq">Frequently Asked Questions</a><br />';
+			buffer += '<a href="http://www.smogon.com/sim/faq" target="_blank">Frequently Asked Questions</a><br />';
 		}
 		if (target === 'all' || target === 'deviation') {
 			matched = true;
-			buffer += '<a href="http://www.smogon.com/sim/faq#deviation">Why did this user gain or lose so many points?</a><br />';
+			buffer += '<a href="http://www.smogon.com/sim/faq#deviation" target="_blank">Why did this user gain or lose so many points?</a><br />';
 		}
 		if (target === 'all' || target === 'doubles' || target === 'triples' || target === 'rotation') {
 			matched = true;
-			buffer += '<a href="http://www.smogon.com/sim/faq#doubles">Can I play doubles/triples/rotation battles here?</a><br />';
+			buffer += '<a href="http://www.smogon.com/sim/faq#doubles" target="_blank">Can I play doubles/triples/rotation battles here?</a><br />';
 		}
 		if (target === 'all' || target === 'randomcap') {
 			matched = true;
-			buffer += '<a href="http://www.smogon.com/sim/faq#randomcap">What is this fakemon and what is it doing in my random battle?</a><br />';
+			buffer += '<a href="http://www.smogon.com/sim/faq#randomcap" target="_blank">What is this fakemon and what is it doing in my random battle?</a><br />';
 		}
 		if (target === 'all' || target === 'restarts') {
 			matched = true;
-			buffer += '<a href="http://www.smogon.com/sim/faq#restarts">Why is the server restarting?</a><br />';
+			buffer += '<a href="http://www.smogon.com/sim/faq#restarts" target="_blank">Why is the server restarting?</a><br />';
 		}
 		if (target === 'all' || target === 'staff') {
 			matched = true;
-			buffer += '<a href="http://www.smogon.com/sim/staff_faq">Staff FAQ</a><br />';
+			buffer += '<a href="http://www.smogon.com/sim/staff_faq" target="_blank">Staff FAQ</a><br />';
 		}
 		if (!matched) {
 			return this.sendReply('The FAQ entry "'+target+'" was not found. Try /faq for general help.');
@@ -559,32 +1068,32 @@ var commands = exports.commands = {
 		var matched = false;
 		if (!target || target === 'all') {
 			matched = true;
-			buffer += '- <a href="http://www.smogon.com/tiers/">Smogon Tiers</a><br />';
-			buffer += '- <a href="http://www.smogon.com/bw/banlist/">The banlists for each tier</a><br />';
+			buffer += '- <a href="http://www.smogon.com/tiers/" target="_blank">Smogon Tiers</a><br />';
+			buffer += '- <a href="http://www.smogon.com/bw/banlist/" target="_blank">The banlists for each tier</a><br />';
 		}
 		if (target === 'all' || target === 'ubers' || target === 'uber') {
 			matched = true;
-			buffer += '- <a href="http://www.smogon.com/bw/tiers/uber">Uber Pokemon</a><br />';
+			buffer += '- <a href="http://www.smogon.com/bw/tiers/uber" target="_blank">Uber Pokemon</a><br />';
 		}
 		if (target === 'all' || target === 'overused' || target === 'ou') {
 			matched = true;
-			buffer += '- <a href="http://www.smogon.com/bw/tiers/ou">Overused Pokemon</a><br />';
+			buffer += '- <a href="http://www.smogon.com/bw/tiers/ou" target="_blank">Overused Pokemon</a><br />';
 		}
 		if (target === 'all' || target === 'underused' || target === 'uu') {
 			matched = true;
-			buffer += '- <a href="http://www.smogon.com/bw/tiers/uu">Underused Pokemon</a><br />';
+			buffer += '- <a href="http://www.smogon.com/bw/tiers/uu" target="_blank">Underused Pokemon</a><br />';
 		}
 		if (target === 'all' || target === 'rarelyused' || target === 'ru') {
 			matched = true;
-			buffer += '- <a href="http://www.smogon.com/bw/tiers/ru">Rarelyused Pokemon</a><br />';
+			buffer += '- <a href="http://www.smogon.com/bw/tiers/ru" target="_blank">Rarelyused Pokemon</a><br />';
 		}
 		if (target === 'all' || target === 'neverused' || target === 'nu') {
 			matched = true;
-			buffer += '- <a href="http://www.smogon.com/bw/tiers/nu">Neverused Pokemon</a><br />';
+			buffer += '- <a href="http://www.smogon.com/bw/tiers/nu" target="_blank">Neverused Pokemon</a><br />';
 		}
 		if (target === 'all' || target === 'littlecup' || target === 'lc') {
 			matched = true;
-			buffer += '- <a href="http://www.smogon.com/bw/tiers/lc">Little Cup Pokemon</a><br />';
+			buffer += '- <a href="http://www.smogon.com/bw/tiers/lc" target="_blank">Little Cup Pokemon</a><br />';
 		}
 		if (!matched) {
 			return this.sendReply('The Tiers entry "'+target+'" was not found. Try /tiers for general help.');
@@ -651,28 +1160,28 @@ var commands = exports.commands = {
 			if (poke === 'arceus') poke = 'arceus-normal';
 			if (poke === 'thundurus-therian') poke = 'thundurus-t';
 	
-			this.sendReplyBox('<a href="http://www.smogon.com/'+generation+'/pokemon/'+poke+'">'+generation.toUpperCase()+' '+pokemon.name+' analysis</a>, brought to you by <a href="http://www.smogon.com">Smogon University</a>');
+			this.sendReplyBox('<a href="http://www.smogon.com/'+generation+'/pokemon/'+poke+'" target="_blank">'+generation.toUpperCase()+' '+pokemon.name+' analysis</a>, brought to you by <a href="http://www.smogon.com" target="_blank">Smogon University</a>');
 		}
 		
 		// Item
 		if (item.exists && genNumber > 1 && item.gen <= genNumber) {
 			atLeastOne = true;
 			var itemName = item.name.toLowerCase().replace(' ', '_');
-			this.sendReplyBox('<a href="http://www.smogon.com/'+generation+'/items/'+itemName+'">'+generation.toUpperCase()+' '+item.name+' item analysis</a>, brought to you by <a href="http://www.smogon.com">Smogon University</a>');
+			this.sendReplyBox('<a href="http://www.smogon.com/'+generation+'/items/'+itemName+'" target="_blank">'+generation.toUpperCase()+' '+item.name+' item analysis</a>, brought to you by <a href="http://www.smogon.com" target="_blank">Smogon University</a>');
 		}
 		
 		// Ability
 		if (ability.exists && genNumber > 2 && ability.gen <= genNumber) {
 			atLeastOne = true;
 			var abilityName = ability.name.toLowerCase().replace(' ', '_');
-			this.sendReplyBox('<a href="http://www.smogon.com/'+generation+'/abilities/'+abilityName+'">'+generation.toUpperCase()+' '+ability.name+' ability analysis</a>, brought to you by <a href="http://www.smogon.com">Smogon University</a>');
+			this.sendReplyBox('<a href="http://www.smogon.com/'+generation+'/abilities/'+abilityName+'" target="_blank">'+generation.toUpperCase()+' '+ability.name+' ability analysis</a>, brought to you by <a href="http://www.smogon.com" target="_blank">Smogon University</a>');
 		}
 		
 		// Move
 		if (move.exists && move.gen <= genNumber) {
 			atLeastOne = true;
 			var moveName = move.name.toLowerCase().replace(' ', '_');
-			this.sendReplyBox('<a href="http://www.smogon.com/'+generation+'/moves/'+moveName+'">'+generation.toUpperCase()+' '+move.name+' move analysis</a>, brought to you by <a href="http://www.smogon.com">Smogon University</a>');
+			this.sendReplyBox('<a href="http://www.smogon.com/'+generation+'/moves/'+moveName+'" target="_blank">'+generation.toUpperCase()+' '+move.name+' move analysis</a>, brought to you by <a href="http://www.smogon.com" target="_blank">Smogon University</a>');
 		}
 		
 		if (!atLeastOne) {
@@ -685,7 +1194,7 @@ var commands = exports.commands = {
 	 *********************************************************/
 
 	birkal: function(target, room, user) {
-		this.sendReply("It's not funny anymore.");
+		this.sendReply("It's still very funny.");
 	},
 
 	potd: function(target, room, user) {
