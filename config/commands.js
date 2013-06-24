@@ -974,7 +974,7 @@ forums: function(target, room, user) {
 			'- <a href="http://www.smogon.com/forums/showthread.php?t=3466826" target="_blank">Practice BW CAP teams</a>');
 	},
 
-	om: 'othermetas',
+	om: 'OTHERMETAS',
 	othermetas: function(target, room, user) {
 		if (!this.canBroadcast()) return;
 		target = toId(target);
@@ -984,13 +984,13 @@ forums: function(target, room, user) {
 			matched = true;
 			buffer += '- <a href="http://www.smogon.com/forums/forumdisplay.php?f=206" target="_blank">Information on the Other Metagames</a><br />';
 		}
-		if (target === 'all' || target === 'hackmons') {
+		if (target === 'all' || target === 'NUV2') {
 			matched = true;
-			buffer += '- <a href="http://www.smogon.com/forums/showthread.php?t=3475624" target="_blank">Hackmons</a><br />';
+			buffer += '- <a href="http://piratepad.net/ep/pad/view/ro.QNn2uO9D/latest" target="_blank">NUV2, by Oiawesome</a><br />';
 		}
-		if (target === 'all' || target === 'balancedhackmons' || target === 'bh') {
+		if (target === 'all' || target === 'RUV2' || target === 'bh') {
 			matched = true;
-			buffer += '- <a href="http://www.smogon.com/forums/showthread.php?t=3463764" target="_blank">Balanced Hackmons</a><br />';
+			buffer += '- <a href=http://piratepad.net/ep/pad/view/ro.USTFAIHH/latest" target="_blank">RUv2 by Oiawesome</a><br />';
 		}
 		if (target === 'all' || target === 'glitchmons') {
 			matched = true;
