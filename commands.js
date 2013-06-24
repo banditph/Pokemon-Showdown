@@ -12,7 +12,28 @@
  */
 
 var crypto = require('crypto');
+//tour variables
 
+var tourActive = false;
+var tourSigyn = false;
+var tourBracket = [];
+var tourSignup = [];
+var tourTier = '';
+var tourRound = 0;
+var tourSize = 0;
+var tourMoveOn = [];
+var tourRoundSize = 0;
+
+var tourTierList = ['OU','UU','RU','NU','Random Battle','Ubers','Tier Shift','Challenge Cup 1-vs-1','Hackmons','Balanced Hackmons','LC','Smogon Doubles','Doubles Random Battle','Doubles Challenge Cup','Glitchmons'];
+var tourTierString = '';
+for (var i = 0; i < tourTierList.length; i++) {
+	if ((tourTierList.length - 1) > i) {
+	tourTierString = tourTierString + tourTierList[i] + ', ';
+	} else {
+	tourTierString = tourTierString + tourTierList[i];
+	}
+	},
+	
 var commands = exports.commands = {
 
 	version: function(target, room, user) {
