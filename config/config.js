@@ -155,7 +155,8 @@ exports.customavatars = {
 	'cwegz': 'av35.png',
 	'wingedyoshi': 'av36.png',
 	'miloticnob': 'av21.png',
-	'namin': 'av12.png'
+	'namin': 'av12.png',
+	'oiawesome': 'av26.png'
 	};
 
 
