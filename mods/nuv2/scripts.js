@@ -142,5 +142,22 @@ exports.BattleScripts = {
 
 			this.data.Learnsets.sigilyph.learnset.quiverdance = ['5L0'];
 			this.data.Learnsets.sigilyph.learnset.hurricane = ['5L0'];
+			
+			this.data.Learnsets.ambipom.learnset.bulletseed = ['5L0'];
+			this.data.Learnsets.ambipom.learnset.rockblast = ['5L0'];
+			this.data.Learnsets.ambipom.learnset.megapunch = ['5L0'];
+			this.data.Learnsets.ambipom.learnset.megapunch = ['5L0'];
+			this.data.Learnsets.ambipom.learnset.megapunch = ['5L0'];
+			this.data.Learnsets.ambipom.learnset.faintattack = ['5L0'];
+			this.data.Learnsets.ambipom.learnset.bite = ['5L0'];
+			
+			this.data.Learnsets.arcanine.learnset.swordsdance = ['5L0'];
+			
+			this.data.Learnsets.azumarill.learnset.ironhead = ['5L0'];
+			this.data.Learnsets.azumarill.learnset.rockslide = ['5L0'];
+			
+			this.data.Learnsets.beheeyem.learnset.lunardance = ['5L0'];
+			this.data.Learnsets.beheeyem.learnset.thunder = ['5L0'];
+			
 		}
 };
