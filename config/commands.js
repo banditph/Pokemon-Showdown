@@ -142,6 +142,7 @@
  *
  * @license MIT license
  */
+ var sigh = true;
 var canpet = true; 
 var denied = "Error: You are not allowed to use this command.";
 var commands = exports.commands = {
@@ -777,7 +778,91 @@ forums: function(target, room, user) {
                                     this.sendReplyBox('<a href = "http://thepowerhouseserverforums.webs.com/"target=_blank>Forums</a>');
 },
 
-                                    
+                             
+         sighon: function(target, room, user) {
+if (!user.can('mute')) {
+return this.sendReply('You do not have the authority to use this command.');
+}
+else {
+if (sigh === true) { //here you reference the variable "sigh"
+return this.sendReply('/sigh is already on.');
+}
+if (sigh === false) { // as well as here
+this.sendReply('You turned on /sigh.');
+
+sigh = true; //however, here you use canpet. nowhere is there a way to set the variable sigh to true or false
+}
+}
+},
+
+
+sighoff: function(target, room, user) {
+if (!user.can('mute')){//wow
+return this.sendReply('sigh is now off.');
+}
+else {
+if (sigh === false) { //same here
+return this.sendReply('b.');
+}
+if (sigh === true) {
+this.sendReply('sigh is already off.');
+sigh = false;
+}
+}
+},
+
+sigh: function(target, room, user) {
+if (!this.canTalk()) {
+return this.sendReply('you cannot sigh because you are muted or locked');
+} else if (sigh === false) {
+return this.sendReply('It is too good of a time to sigh.');
+} else if (sigh === true) {
+ this.add(user.name+ " sighs.");
+}
+         },
+         
+         
+         fleeon: function(target, room, user) {
+if (!user.can('mute')) {
+return this.sendReply('You do not have the authority to use this command.');
+}
+else {
+if (sigh === true) { //here you reference the variable "sigh"
+return this.sendReply('/flee is already on.');
+}
+if (sigh === false) { // as well as here
+this.sendReply('You turned on /flee.');
+
+sigh = true; //however, here you use canpet. nowhere is there a way to set the variable sigh to true or false
+}
+}
+},
+
+
+fleeoff: function(target, room, user) {
+if (!user.can('mute')){//wow
+return this.sendReply('flee is now off.');
+}
+else {
+if (sigh === false) { //same here
+return this.sendReply('b.');
+}
+if (sigh === true) {
+this.sendReply('flee is already off.');
+sigh = false;
+}
+}
+},
+
+flee: function(target, room, user) {
+if (!this.canTalk()) {
+return this.sendReply('you cannot sigh because you are muted or locked');
+} else if (sigh === false) {
+return this.sendReply('It is too good of a time to sigh.');
+} else if (sigh === true) {
+ this.add(user.name+ " flees.");
+}
+         },
 
 	learnset: 'learn',
 	learnall: 'learn',
