@@ -144,7 +144,7 @@ exports.customavatars = {
 	'idontplaythis': 'av16.png',
 	'spiritbolt': 'av33.png',
 	'shadowbandi': 'av13.png',
-	'matts3ds': 'av1.png',
+	'matts3ds': 'av16.png',
 	'jvaughanj': 'av31.png',
 	'strawberryfox': 'av21.png',
 	'bandiku': 'av19.png',
