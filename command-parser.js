@@ -110,6 +110,9 @@ var parse = exports.parse = function(message, room, user, connection, levelsDeep
 					connection.sendTo(room, data);
 				}
 			},
+			sendReplyNobox: function(html) {
+				this.sendReply('|raw|'+html);
+			},
 			sendReplyBox: function(html) {
 				this.sendReply('|raw|<div class="infobox">'+html+'</div>');
 			},
