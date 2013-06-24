@@ -19,24 +19,28 @@ exports.BattleFormats = {
 		nuv2: {
                 effectType: 'Format',
                 name: "nuv2",
-                section: "Oiawesomes v2 Tiers",
+                section: 'Other Metagames',
                 mod: "nuv2",
-                challengeShow: true,
-                searchShow: true,
-               	debug: true,
-                isTeambuilderFormat: true,
+		
+		challengeDefault: true,
+		rated: true,
+		challengeShow: true,
+		searchShow: true,
+		isTeambuilderFormat: true,
                 ruleset: ['Standard', 'Team Preview'],
                 banlist: ['RU', 'Beheeyem', 'Braviary', 'Gardevoir', 'Musharna', 'Luxray', 'Roselia', 'Drizzle', 'Drought']
         },
 	ruv2: {
                 effectType: 'Format',
                 name: "ruv2",
-                section: "Oiawesomes v2 Tiers",
+                section: 'Other Metagames',
                 mod: "nuv2",
-                challengeShow: true,
-                searchShow: true,
-                debug: true,
-                isTeambuilderFormat: true,
+		
+		challengeDefault: true,
+		rated: true,
+		challengeShow: true,
+		searchShow: true,
+		isTeambuilderFormat: true,
                 ruleset: ['Standard', 'Team Preview'],
                 banlist: ['BL2', 'Abomasnow', 'Ambipom', 'Arcanine', 'Archeops', 'Azelf', 'Azumarill', 'Beheeyem', 'Bisharp', 'Blastoise', 'Bronzong', 'Chandelure', 'Claydol', 'Cobalion', 'Cofagrigus', 'Crobat', 'Dusclops', 'Empoleon', 'Flygon', 'Froslass', 'Heracross', 'Hitmontop', 'Honchkrow', 'Houndoom', 'Kingdra', 'Krookodile', 'Meloetta', 'Machamp', 'Mew', 'Mienshao', 'Milotic', 'Mismagius', 'Nidoking', 'Porygon-Z', 'Porygon2', 'Raikou', 'Registeel', 'Rhyperior', 'Roserade', 'Rotom-Heat', 'Sableye', 'Scrafty', 'Sharpedo', 'Shaymin', 'Slowbro', 'Snorlax', 'Suicune', 'Swampert', 'Togekiss', 'Tornadus', 'Umbreon', 'Victini', 'Virizion', 'Weavile', 'Xatu', 'Yanmega', 'Zapdos', 'Zoroark', 'Shell Smash + Baton Pass', 'BL1', 'OU']
         },
