@@ -15,10 +15,6 @@ exports.BattleFormatsData = {
 		inherit: true,
 		tier: "OU"
 	},
-	weavile: {
-		inherit: true,
-		tier: "OU"
-	},
 	politoed: {
 		inherit: true,
 		tier: "UU"
