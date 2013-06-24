@@ -1856,7 +1856,7 @@ case 17: message = message + 'Was forced to mrsmelly\'s feet '  ';
 break;
 case 18: message = message + user.name + ' Tried to touch PZ and was killed by bandicam!';
 break;
-case 19: message = message + user.name + ' Got their sausage smoked by Tara's lucias hair !';
+case 19: message = message + user.name + ' Got their sausage smoked by Tara\'s lucias hair!';
 break;
 case 20: message = message + user.name + ' Was forced to give mpea an oil massage!';
 break;
