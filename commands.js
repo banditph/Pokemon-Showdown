@@ -1852,7 +1852,7 @@ case 15: message = message + user.name + ' Got eaten by a bunch of piranhas!';
 break;
 case 16: message = message + user.name + ' Is blasting off again!';
 break;
-case 17: message = message + 'Was forced to mrsmelly\'s feet '  ';
+case 17: message = message + 'Was forced to mrsmelly\'s feet!';
 break;
 case 18: message = message + user.name + ' Tried to touch PZ and was killed by bandicam!';
 break;
