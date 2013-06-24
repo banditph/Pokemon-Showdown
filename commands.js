@@ -1828,7 +1828,7 @@ case 3: message = message + user.name + ' Fell into the bandicams fream and noti
 break;
 case 4: message = message + user.name + ' Has been silenced by TalkTakesTime!';
 break;        
-case 5: message = message + user.name + ' Became  piiiikachuu/'s slave!';
+case 5: message = message + user.name + ' Became  piiiikachuu\'s slave!';
 break;
 case 6: message = message + user.name + ' Realized he was related to kupo and commited suicide!';
 break;
@@ -1852,7 +1852,7 @@ case 15: message = message + user.name + ' Got eaten by a bunch of piranhas!';
 break;
 case 16: message = message + user.name + ' Is blasting off again!';
 break;
-case 17: message = message + 'Was forced to mrsmelly's feet '  ';
+case 17: message = message + 'Was forced to mrsmelly\'s feet '  ';
 break;
 case 18: message = message + user.name + ' Tried to touch PZ and was killed by bandicam!';
 break;
