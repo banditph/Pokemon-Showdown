@@ -159,5 +159,22 @@ exports.BattleScripts = {
 			this.data.Learnsets.beheeyem.learnset.lunardance = ['5L0'];
 			this.data.Learnsets.beheeyem.learnset.thunder = ['5L0'];
 			
+			this.data.Learnsets.tornadus.learnset.closecombat = ['5L0'];
+			this.data.Learnsets.tornadus.learnset.aurasphere = ['5L0'];
+			
+			this.data.Learnsets.ninetales.learnset.lunardance = ['5L0'];
+			this.data.Learnsets.ninetales.learnset.gigadrain = ['5L0'];
+			this.data.Learnsets.ninetales.learnset.focusblast = ['5L0'];
+			this.data.Learnsets.ninetales.learnset.aurasphere = ['5L0'];
+			
+			this.data.Learnsets.politoed.learnset.gigadrain = ['5L0'];
+			this.data.Learnsets.politoed.learnset.solarbeam = ['5L0'];
+			this.data.Learnsets.politoed.learnset.growth = ['5L0'];
+			this.data.Learnsets.politoed.learnset.wish = ['5L0'];
+			this.data.Learnsets.politoed.learnset.recover = ['5L0'];
+			
+			this.data.Learnsets.gliscor.learnset.rockblast = ['5L0'];
+			this.data.Learnsets.gliscor.learnset.bravebird = ['5L0'];
+			this.data.Learnsets.gliscor.learnset.pursuit = ['5L0'];
 		}
 };
