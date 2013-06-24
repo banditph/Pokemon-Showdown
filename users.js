@@ -193,6 +193,20 @@ var User = (function () {
 		this.challengesFrom = {};
 		this.challengeTo = null;
 		this.lastChallenge = 0;
+		//tourvaluesstart
+		//currency and emotes
+		//this.money = 0;
+		//this.emote = [false, false, false, false, false, false, false, false, false, false];
+		//this.tickets = 0;
+		this.temphost = false;
+		this.mark = false;
+		this.ignoremark = false;
+		this.winCounter = 0;
+
+		// tournament role
+		this.tourRole = '';
+		this.tourOpp = '';
+		//tourvaluesend
 
 		// initialize
 		users[this.userid] = this;
