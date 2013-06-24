@@ -12,5 +12,29 @@
 		name: "Reckless",
 		rating: 3,
 		num: 120
+	},
+		"purepower": {
+		desc: "This Pokemon's Special Attack stat is doubled. Therefore, if this Pokemon's Special Attack stat on the status screen is 200, it effectively has an Attack stat of 400; which is then subject to the full range of stat boosts and reductions.",
+		shortDesc: "This Pokemon's Special Attack is doubled.",
+		onModifySpa: function(spa) {
+			return spa * 2;
+		},
+		id: "purepower",
+		name: "Pure Power",
+		rating: 5,
+		num: 74
+	},
+	"telepathy": {
+			desc: "When a Pokemon with Telepathy faints another Pokemon, its Special Attack rises by one stage.",
+		shortDesc: "This Pokemon's Special Attack is boosted by 1 if it attacks and faints another Pokemon.",
+		onSourceFaint: function(target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				this.boost({spa:1}, source);
+			}
+		},
+		id: "telepathy",
+		name: "Telepathy",
+		rating: 4,
+		num: 140
 	}
 };
