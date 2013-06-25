@@ -1022,7 +1022,8 @@ return this.sendReply('It is too good of a time to sigh.');
 
 	opensource: function(target, room, user) {
 		if (!this.canBroadcast()) return;
-		this.sendReplyBox('Thhe Powerhouse is open source:<br />- Language: JavaScript<br /><a href="https://github.com/bandigroup/Pokemon-Showdown"> target="_blank">TPH Server Source Code</a>');
+		this.sendReplyBox('Our Opensource<br />' +
+	                '- Language: JavaScrip <a href="https://github.com/bandigroup/Pokemon-Showdown" target="_blank">TPH Server Source Code</a>');
 	},
 
 	avatars: function(target, room, user) {
