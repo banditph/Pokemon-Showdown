@@ -590,6 +590,19 @@ exports.BattleFormats = {
 		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
 		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew']
 	},
+	ubershift: {
+		name: "Uber Shift",
+		section: 'thepowerhouse Metas',
+
+		mod: 'ubershift',
+		effectType: 'Format',
+		rated: true,
+		challengeShow: true,
+		searchShow: true,
+		isTeambuilderFormat: true,
+		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
+		banlist: ['Pokemon']
+	},
 	pu: {
 		name: "PU",
 		section: "Other Metas",
