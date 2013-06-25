@@ -823,7 +823,7 @@ return this.sendReply('Poof is currently disabled.');
 		targetUser.send('|c|~|/warn '+target);
 	},
 
-	s: 'STFU',
+	stfu: 'STFU',
 	mute: function(target, room, user) {
 		if (!target) return this.parse('/help STFU');
 
@@ -836,13 +836,13 @@ return this.sendReply('Poof is currently disabled.');
 		if (targetUser.mutedRooms[room.id] || targetUser.locked || !targetUser.connected) {
 			var problem = ' but was already '+(!targetUser.connected ? 'offline' : targetUser.locked ? 'locked' : 'made STFU');
 			if (!target) {
-				return this.privateModCommand('('+targetUser.name+' would be made STFU by '+user.name+problem+'.)');
+				return this.privateModCommand('('+targetUser.name+' would be told to shut the fuck up by '+user.name+problem+'.)');
 			}
-			return this.addModCommand(''+targetUser.name+' would be STFU by '+user.name+problem+'.' + (target ? " (" + target + ")" : ""));
+			return this.addModCommand(''+targetUser.name+' would be Shut the fuck up by '+user.name+problem+'.' + (target ? " (" + target + ")" : ""));
 		}
 
-		targetUser.popup(user.name+' has made you STFU you for 7 minutes. '+target);
-		this.addModCommand(''+targetUser.name+' was made STFU by '+user.name+' for 7 minutes.' + (target ? " (" + target + ")" : ""));
+		targetUser.popup(user.name+' has made you Shut the fuck up you for 7 minutes. '+target);
+		this.addModCommand(''+targetUser.name+' was made Shut the fuck up by '+user.name+' for 7 minutes.' + (target ? " (" + target + ")" : ""));
 		var alts = targetUser.getAlts();
 		if (alts.length) this.addModCommand(""+targetUser.name+"'s alts were also made STFU: "+alts.join(", "));
 
