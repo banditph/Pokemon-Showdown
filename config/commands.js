@@ -1059,132 +1059,20 @@ return this.sendReply('It is too good of a time to sigh.');
 			'- <a href="http://www.smogon.com/forums/showthread.php?t=3466826" target="_blank">Practice BW CAP teams</a>');
 	},
 
-	om: 'OTHERMETAS',
-	othermetas: function(target, room, user) {
+	om: 'oms',
+	oms: function(target, room, user) {
 		if (!this.canBroadcast()) return;
-		target = toId(target);
-		var buffer = '';
-		var matched = false;
-		if (!target || target === 'all') {
-			matched = true;
-			buffer += '- <a href="http://www.smogon.com/forums/forumdisplay.php?f=206" target="_blank">Information on the Other Metagames</a><br />';
-		}
-		if (target === 'all' || target === 'NUV2') {
-			matched = true;
-			buffer += '- <a href="http://piratepad.net/ep/pad/view/ro.QNn2uO9D/latest" target="_blank">NUV2, by Oiawesome</a><br />';
-		}
-		if (target === 'all' || target === 'RUV2' || target === 'bh') {
-			matched = true;
-			buffer += '- <a href=http://piratepad.net/ep/pad/view/ro.USTFAIHH/latest" target="_blank">RUv2 by Oiawesome</a><br />';
-		}
-		if (target === 'all' || target === 'glitchmons') {
-			matched = true;
-			buffer += '- <a href="http://www.smogon.com/forums/showthread.php?t=3467120" target="_blank">Glitchmons</a><br />';
-		}
-		if (target === 'all' || target === 'tiershift' || target === 'ts') {
-			matched = true;
-			buffer += '- <a href="http://www.smogon.com/forums/showthread.php?t=3479358" target="_blank">Tier Shift</a><br />';
-		}
-		if (target === 'all' || target === 'seasonalladder' || target === 'seasonal') {
-			matched = true;
-			buffer += '- <a href="http://www.smogon.com/sim/seasonal" target="_blank">Seasonal Ladder</a><br />';
-		}
-		if (target === 'all' || target === 'smogondoubles' || target === 'doubles') {
-			matched = true;
-			buffer += '- <a href="http://www.smogon.com/forums/showthread.php?t=3476469" target="_blank">Smogon Doubles</a><br />';
-		}
-		if (target === 'all' || target === 'vgc2013' || target === 'vgc') {
-			matched = true;
-			buffer += '- <a href="http://www.smogon.com/forums/showthread.php?t=3471161" target="_blank">VGC 2013</a><br />';
-		}
-		if (target === 'all' || target === 'omotm' || target === 'omofthemonth' || target === 'month') {
-			matched = true;
-			buffer += '- <a href="http://www.smogon.com/forums/showthread.php?t=3481155" target="_blank">OM of the Month</a>';
-		}
-		if (!matched) {
-			return this.sendReply('The Other Metas entry "'+target+'" was not found. Try /othermetas or /om for general help.');
-		}
-		this.sendReplyBox(buffer);
+		this.sendReplyBox('Our Other Metagames (By:Oiawesome, Mrsmellyfeet100 And Nollan)<br />' +
+			'- <a href="https://docs.google.com/document/d/1lhU_jGa8_0TiEcN4w6K3k2xvIN5eeflLvarUfwW4QrI/edit" target="_blank">Damage Calculator</a>');
+			
+			
+			
 	},
 
 	
 	
 
-	faq: function(target, room, user) {
-		if (!this.canBroadcast()) return;
-		target = target.toLowerCase();
-		var buffer = '';
-		var matched = false;
-		if (!target || target === 'all') {
-			matched = true;
-			buffer += '<a href="http://www.smogon.com/sim/faq" target="_blank">Frequently Asked Questions</a><br />';
-		}
-		if (target === 'all' || target === 'deviation') {
-			matched = true;
-			buffer += '<a href="http://www.smogon.com/sim/faq#deviation" target="_blank">Why did this user gain or lose so many points?</a><br />';
-		}
-		if (target === 'all' || target === 'doubles' || target === 'triples' || target === 'rotation') {
-			matched = true;
-			buffer += '<a href="http://www.smogon.com/sim/faq#doubles" target="_blank">Can I play doubles/triples/rotation battles here?</a><br />';
-		}
-		if (target === 'all' || target === 'randomcap') {
-			matched = true;
-			buffer += '<a href="http://www.smogon.com/sim/faq#randomcap" target="_blank">What is this fakemon and what is it doing in my random battle?</a><br />';
-		}
-		if (target === 'all' || target === 'restarts') {
-			matched = true;
-			buffer += '<a href="http://www.smogon.com/sim/faq#restarts" target="_blank">Why is the server restarting?</a><br />';
-		}
-		if (target === 'all' || target === 'staff') {
-			matched = true;
-			buffer += '<a href="http://www.smogon.com/sim/staff_faq" target="_blank">Staff FAQ</a><br />';
-		}
-		if (!matched) {
-			return this.sendReply('The FAQ entry "'+target+'" was not found. Try /faq for general help.');
-		}
-		this.sendReplyBox(buffer);
-	},
-
-	banlists: 'tiers',
-	tiers: function(target, room, user) {
-		if (!this.canBroadcast()) return;
-		target = toId(target);
-		var buffer = '';
-		var matched = false;
-		if (!target || target === 'all') {
-			matched = true;
-			buffer += '- <a href="http://www.smogon.com/tiers/" target="_blank">Smogon Tiers</a><br />';
-			buffer += '- <a href="http://www.smogon.com/bw/banlist/" target="_blank">The banlists for each tier</a><br />';
-		}
-		if (target === 'all' || target === 'ubers' || target === 'uber') {
-			matched = true;
-			buffer += '- <a href="http://www.smogon.com/bw/tiers/uber" target="_blank">Uber Pokemon</a><br />';
-		}
-		if (target === 'all' || target === 'overused' || target === 'ou') {
-			matched = true;
-			buffer += '- <a href="http://www.smogon.com/bw/tiers/ou" target="_blank">Overused Pokemon</a><br />';
-		}
-		if (target === 'all' || target === 'underused' || target === 'uu') {
-			matched = true;
-			buffer += '- <a href="http://www.smogon.com/bw/tiers/uu" target="_blank">Underused Pokemon</a><br />';
-		}
-		if (target === 'all' || target === 'rarelyused' || target === 'ru') {
-			matched = true;
-			buffer += '- <a href="http://www.smogon.com/bw/tiers/ru" target="_blank">Rarelyused Pokemon</a><br />';
-		}
-		if (target === 'all' || target === 'neverused' || target === 'nu') {
-			matched = true;
-			buffer += '- <a href="http://www.smogon.com/bw/tiers/nu" target="_blank">Neverused Pokemon</a><br />';
-		}
-		if (target === 'all' || target === 'littlecup' || target === 'lc') {
-			matched = true;
-			buffer += '- <a href="http://www.smogon.com/bw/tiers/lc" target="_blank">Little Cup Pokemon</a><br />';
-		}
-		if (!matched) {
-			return this.sendReply('The Tiers entry "'+target+'" was not found. Try /tiers for general help.');
-		}
-		this.sendReplyBox(buffer);
-	},
+	
 
 	analysis: 'smogdex',
 	strategy: 'smogdex',
