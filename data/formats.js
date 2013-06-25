@@ -19,7 +19,7 @@ exports.BattleFormats = {
 		nuv2: {
                 effectType: 'Format',
                 name: "nuv2",
-                section: 'thepowerhousemetas',
+                section: 'V2 Tiers',
                 mod: "nuv2",
 		
 		challengeDefault: true,
@@ -28,12 +28,12 @@ exports.BattleFormats = {
 		searchShow: true,
 		isTeambuilderFormat: true,
                 ruleset: ['Standard', 'Team Preview','Evasion Abilities Clause', 'Team Preview'],
-                banlist: ['RU', 'Beheeyem', 'Braviary', 'Gardevoir', 'Musharna', 'Luxray', 'Roselia', 'Drizzle', 'Drought']
+                banlist: ['RU','UU','OU','BL1','Uber','BL3']
         },
 	ruv2: {
                 effectType: 'Format',
                 name: "ruv2",
-                section: 'thepowerhousemetas',
+                section: 'V2 Tiers',
                 mod: "nuv2",
 		
 		challengeDefault: true,
@@ -42,12 +42,26 @@ exports.BattleFormats = {
 		searchShow: true,
 		isTeambuilderFormat: true,
                 ruleset: ['Standard', 'Team Preview','Evasion Abilities Clause', 'Team Preview'],
-                banlist: ['BL2', 'Abomasnow', 'Ambipom', 'Arcanine', 'Archeops', 'Azelf', 'Azumarill', 'Beheeyem', 'Bisharp', 'Blastoise', 'Bronzong', 'Chandelure', 'Claydol', 'Cobalion', 'Cofagrigus', 'Crobat', 'Dusclops', 'Empoleon', 'Flygon', 'Froslass', 'Heracross', 'Hitmontop', 'Honchkrow', 'Houndoom', 'Kingdra', 'Krookodile', 'Meloetta', 'Machamp', 'Mew', 'Mienshao', 'Milotic', 'Mismagius', 'Nidoking', 'Porygon-Z', 'Porygon2', 'Raikou', 'Registeel', 'Rhyperior', 'Roserade', 'Rotom-Heat', 'Sableye', 'Scrafty', 'Sharpedo', 'Shaymin', 'Slowbro', 'Snorlax', 'Suicune', 'Swampert', 'Togekiss', 'Tornadus', 'Umbreon', 'Victini', 'Virizion', 'Weavile', 'Xatu', 'Yanmega', 'Zapdos', 'Zoroark', 'Shell Smash + Baton Pass', 'BL1', 'OU']
-        },	
+                banlist: ['BL2','UU','BL1','OU','Uber']
+        },
+	uuv2: {
+                effectType: 'Format',
+                name: "uuv2",
+                section: 'V2 Tiers',
+                mod: "nuv2",
+		
+		challengeDefault: true,
+		rated: true,
+		challengeShow: true,
+		searchShow: true,
+		isTeambuilderFormat: true,
+                ruleset: ['Standard', 'Team Preview','Evasion Abilities Clause', 'Team Preview'],
+                banlist: ['BL1','OU','Uber']
+        },
         		statswap: {
                 effectType: 'Format',
                 name: "Stat Swap",
-                section: 'thepowerhousemetas',
+                section: 'thepowerhouse Metas',
                 mod: "statswap",
 		
 		challengeDefault: true,
