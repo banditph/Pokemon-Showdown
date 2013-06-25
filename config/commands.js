@@ -762,10 +762,6 @@ return this.sendReply('but it failed.');
                                     this.sendReplyBox('<a href = "https://docs.google.com/document/d/1LaK5vRlYAfo84BLcq-DqtMvrWCrq8Xt4ll9L6qNcAwI/edit"target=_blank>Staff</a>');
                                     },
 
-tph: function(target, room, user) {
-                                    if (!this.canBroadcast()) return;
-                                    this.sendReplyBox('<a href = " http://www.smogon.com/forums/group.php?groupid=2515"target=_blank>Our Group</a>');
-},
 rule: 'rules',
 	rules: function(target, room, user) {
 		if (!this.canBroadcast()) return;
@@ -1063,7 +1059,7 @@ return this.sendReply('It is too good of a time to sigh.');
 	oms: function(target, room, user) {
 		if (!this.canBroadcast()) return;
 		this.sendReplyBox('Our Other Metagames (By:Oiawesome, Mrsmellyfeet100 And Nollan)<br />' +
-			'- <a href="https://docs.google.com/document/d/1lhU_jGa8_0TiEcN4w6K3k2xvIN5eeflLvarUfwW4QrI/edit" target="_blank">Damage Calculator</a>');
+			'- <a href="https://docs.google.com/document/d/1lhU_jGa8_0TiEcN4w6K3k2xvIN5eeflLvarUfwW4QrI/edit" target="_blank">V2 Tiers</a>');
 			
 			
 			
