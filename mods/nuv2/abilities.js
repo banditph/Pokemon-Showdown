@@ -13,10 +13,10 @@
 		rating: 3,
 		num: 120
 	},
-		"purepower": {
-		desc: "This Pokemon's Special Attack stat is doubled. Therefore, if this Pokemon's Special Attack stat on the status screen is 200, it effectively has an Attack stat of 400; which is then subject to the full range of stat boosts and reductions.",
+	"purepower": {
+		desc: "This Pokemon's Special Attack stat is doubled. Therefore, if this Pokemon's Special Attack stat on the status screen is 200, it effectively has an Special Attack stat of 400; which is then subject to the full range of stat boosts and reductions.",
 		shortDesc: "This Pokemon's Special Attack is doubled.",
-		onModifySpa: function(spa) {
+		onModifyAtk: function(spa) {
 			return spa * 2;
 		},
 		id: "purepower",
