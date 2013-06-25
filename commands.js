@@ -823,9 +823,9 @@ return this.sendReply('Poof is currently disabled.');
 		targetUser.send('|c|~|/warn '+target);
 	},
 
-	m: 'mute',
+	s: 'STFU',
 	mute: function(target, room, user) {
-		if (!target) return this.parse('/help mute');
+		if (!target) return this.parse('/help STFU');
 
 		target = this.splitTarget(target);
 		var targetUser = this.targetUser;
@@ -834,40 +834,40 @@ return this.sendReply('Poof is currently disabled.');
 		}
 		if (!this.can('mute', targetUser)) return false;
 		if (targetUser.mutedRooms[room.id] || targetUser.locked || !targetUser.connected) {
-			var problem = ' but was already '+(!targetUser.connected ? 'offline' : targetUser.locked ? 'locked' : 'muted');
+			var problem = ' but was already '+(!targetUser.connected ? 'offline' : targetUser.locked ? 'locked' : 'made STFU');
 			if (!target) {
-				return this.privateModCommand('('+targetUser.name+' would be muted by '+user.name+problem+'.)');
+				return this.privateModCommand('('+targetUser.name+' would be made STFU by '+user.name+problem+'.)');
 			}
-			return this.addModCommand(''+targetUser.name+' would be muted by '+user.name+problem+'.' + (target ? " (" + target + ")" : ""));
+			return this.addModCommand(''+targetUser.name+' would be STFU by '+user.name+problem+'.' + (target ? " (" + target + ")" : ""));
 		}
 
-		targetUser.popup(user.name+' has muted you for 7 minutes. '+target);
-		this.addModCommand(''+targetUser.name+' was muted by '+user.name+' for 7 minutes.' + (target ? " (" + target + ")" : ""));
+		targetUser.popup(user.name+' has made you STFU you for 7 minutes. '+target);
+		this.addModCommand(''+targetUser.name+' was made STFU by '+user.name+' for 7 minutes.' + (target ? " (" + target + ")" : ""));
 		var alts = targetUser.getAlts();
-		if (alts.length) this.addModCommand(""+targetUser.name+"'s alts were also muted: "+alts.join(", "));
+		if (alts.length) this.addModCommand(""+targetUser.name+"'s alts were also made STFU: "+alts.join(", "));
 
 		targetUser.mute(room.id, 7*60*1000);
 	},
 
 	hourmute: function(target, room, user) {
-		if (!target) return this.parse('/help hourmute');
+		if (!target) return this.parse('/help hourSTFU');
 
 		target = this.splitTarget(target);
 		var targetUser = this.targetUser;
 		if (!targetUser) {
 			return this.sendReply('User '+this.targetUsername+' not found.');
 		}
-		if (!this.can('mute', targetUser)) return false;
+		if (!this.can('STFU', targetUser)) return false;
 
 		if (((targetUser.mutedRooms[room.id] && (targetUser.muteDuration[room.id]||0) >= 50*60*1000) || targetUser.locked) && !target) {
-			var problem = ' but was already '+(!targetUser.connected ? 'offline' : targetUser.locked ? 'locked' : 'muted');
+			var problem = ' but was already '+(!targetUser.connected ? 'offline' : targetUser.locked ? 'locked' : 'made STFU');
 			return this.privateModCommand('('+targetUser.name+' would be muted by '+user.name+problem+'.)');
 		}
 
-		targetUser.popup(user.name+' has muted you for 60 minutes. '+target);
-		this.addModCommand(''+targetUser.name+' was muted by '+user.name+' for 60 minutes.' + (target ? " (" + target + ")" : ""));
+		targetUser.popup(user.name+' has made you STFU for 60 minutes. '+target);
+		this.addModCommand(''+targetUser.name+' was made STFU by '+user.name+' for 60 minutes.' + (target ? " (" + target + ")" : ""));
 		var alts = targetUser.getAlts();
-		if (alts.length) this.addModCommand(""+targetUser.name+"'s alts were also muted: "+alts.join(", "));
+		if (alts.length) this.addModCommand(""+targetUser.name+"'s alts were also STFUed: "+alts.join(", "));
 
 		targetUser.mute(room.id, 60*60*1000, true);
 	},
