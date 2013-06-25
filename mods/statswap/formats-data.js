@@ -7,5 +7,4 @@ exports.BattleFormatsData = {
 		inherit: true,
 		tier: "OU"
 	}
-  
-}
+};
