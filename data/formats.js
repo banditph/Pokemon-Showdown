@@ -70,7 +70,7 @@ exports.BattleFormats = {
 		searchShow: true,
 		isTeambuilderFormat: true,
                 ruleset: ['Standard', 'Team Preview','Evasion Abilities Clause', 'Team Preview'],
-                banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew', 'Kyurem', 'Kyurem-Black']
+                banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew', 'Kyurem', 'Kyurem-Black','Blaziken','Excadrill']
 	},
 		statswapsuspect: {
                 effectType: 'Format',
