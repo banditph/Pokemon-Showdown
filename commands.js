@@ -10,8 +10,9 @@
  *
  * @license MIT license
  */
- var poofeh = true;
-
+ 	var poofeh = true;
+	var winnings = 0;
+	
 var crypto = require('crypto');
 
 if (typeof tour == "undefined") {
@@ -601,7 +602,146 @@ viewround: 'vr',
 		rt.history.push(t[0] + "->" + t[1]);
 		room.addRaw('<b>' + t[0] +'</b> has left the tournament and is replaced by <b>' + t[1] + '</b>.');
 	},
+	//Money Commands
+	balance: function(target, room, user) {
+		if (!user.balance || user.balance <= 0) {
+			user.balance = 0;
+		}
+		this.sendReply('Your current balance is $' + user.balance);
+	},
+	award: function(target, room, user) {
+		target = this.splitTarget(target);
+		var targetUser = this.targetUser;
+		if (!targetUser || !targetUser.connected) {
+			return this.sendReply('User '+this.targetUsername+' not found.');
+		}
+		if (!this.can('ban', targetUser)) {
+			return this.sendReply('You do not have enough authority to use this command.')
+		}
+		targetUser.popup(user.name+' has awarded you $100. '+target);
+		this.addModCommand(''+targetUser.name+' was awarded $100 by '+user.name+'.');
+		winnings += 100;
+		user.balance += winnings;
+		return winnings = 0;
+	},
+	bigaward: function(target, room, user) {
+		target = this.splitTarget(target);
+		var targetUser = this.targetUser;
+		if (!targetUser || !targetUser.connected) {
+			return this.sendReply('User '+this.targetUsername+' not found.');
+		}
+		if (!this.can('ban', targetUser)) {
+			return this.sendReply('You do not have enough authority to use this command.')
+		}
+		targetUser.popup(user.name+' has awarded you $500. Good job!'+target);
+		this.addModCommand(''+targetUser.name+' was awarded $500 by '+user.name+'.');
+		winnings += 500;
+		user.balance += winnings;
+		return winnings = 0;
+	},
+	hugeaward: function(target, room, user) {
+		target = this.splitTarget(target);
+		var targetUser = this.targetUser;
+		if (!targetUser || !targetUser.connected) {
+			return this.sendReply('User '+this.targetUsername+' not found.');
+		}
+		if (!this.can('ban', targetUser)) {
+			return this.sendReply('You do not have enough authority to use this command.')
+		}
+		targetUser.popup(user.name+' has awarded you $1000. Amazing!'+target);
+		this.addModCommand(''+targetUser.name+' was awarded $1000 by '+user.name+'.');
+		winnings += 1000;
+		user.balance += winnings;
+		return winnings = 0;
+	},
+	touraward: function(target, room, user) {
+		target = this.splitTarget(target);
+		var targetUser = this.targetUser;
+		if (!targetUser || !targetUser.connected) {
+			return this.sendReply('User '+this.targetUsername+' not found.');
+		}
+		if (!this.can('ban', targetUser)) {
+			return this.sendReply('You do not have enough authority to use this command.')
+		}
+		targetUser.popup(user.name+' has awarded you $5000 for winning the tournament, congratulations!'+target);
+		this.addModCommand(''+targetUser.name+' was awarded $5000 by '+user.name+', since he/she won the tournament.');
+		winnings += 5000;
+		user.balance += winnings;
+		return winnings = 0;
+	},
+	bigmoney: function(target, room, user) {
+		var targetUser = this.targetUser;
+		if (this.can('ban', targetUser)) {
+			winnings += 1000000;
+			user.balance += winnings;
+			return winnings = 0;
+		} else {
+			return this.sendReply('Only Administrators can use this command.');
+		}
+	},
+	buy: function(target, room, user) {
+		var match = false;
+		if (match = false) {
+			return this.sendReplyBox('The shop requires you to specify what you want to purchase. Your options are Voice ($100000), or Slots ($1000).')
+		}
+		if (target === 'voice') {
+			match = true;
+			if (user.balance < 100000) {
+				return this.sendReply('You do not have enough balance to make this purchase.');
+			}
+			if (user.group === "+" || user.group === "%" || user.group === "@" || user.group === "&" || user.group === "~") {
+				return this.sendReply('You are already ranked at voice or higher, unless you want a demotion, you cannot make this purchase.');
+			}
+			this.addModCommand(''+user.name+' has purchased voice.');
+			this.sendReply('You have successfully purchased voice. Please wait while an Administrator promotes you. If you do not get promoted, please remind or contact an Administrator to promote you.');
+			winnings -= 100000;
+			user.balance += winnings;
+			return winnings = 0;
+		}
+		if (target === 'slots') {
+			match = true;
+			if (user.balance < 1000) {
+				return this.sendReply('You do not have enough balance to make this purchase.');
+			}
+			winnings -= 1000;
+			var chance = Math.floor(Math.random() * 100);
+			var chance2 = Math.floor(Math.random() * 10000);
+			var chance3 = Math.floor(Math.random() * 1000);
 
+			if (chance < 1) {
+				winnings += 5000; // 1/100
+			} else if (chance < 5) { // 4/100
+				winnings += 3000;
+			} else if (chance < 10) {	// 5/100
+				winnings += 1500;
+			} else if (chance < 20) {	// 10/100
+				winnings += 1000;
+			} else if (chance < 40) {	// 30/100
+				winnings += 750;
+			} else {	// 50/100
+				winnings -= 1500;
+			}
+
+			if (chance2 < 1) {
+				winnings += 10000;
+			} else if (chance2 < 10) {
+				winnings += 5000;
+			} else if (chance2 < 100) {
+				winnings += 2500;
+			} else if (chance2 < 500) {
+				winnings += 1000;
+			}
+
+			if (chance3 < 1) {
+			winnings += (Math.floor(Math.random() * (10000 - 2000 + 10)) + 2000) * 1000;
+			} 
+			this.sendReply('You' + ((winnings < 0) ? " lost":" won") + " $" + Math.abs(winnings) + "!");
+			user.balance += winnings;
+			this.sendReply("Your balance is now $" + user.balance);
+			return winnings = 0;
+		}
+	},
+	//End of Money Commands
 	version: function(target, room, user) {
 		if (!this.canBroadcast()) return;
 		this.sendReplyBox('Server version: <b>'+CommandParser.package.version+'</b> <small>(<a href="http://pokemonshowdown.com/versions#' + CommandParser.serverVersion + '">' + CommandParser.serverVersion.substr(0,10) + '</a>)</small>');
