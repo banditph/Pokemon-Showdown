@@ -15,7 +15,77 @@ exports.BattleFormats = {
 		challengeShow: true,
 		searchShow: true,
 		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod']
-
+	},
+		nuv2: {
+                effectType: 'Format',
+                name: "nuv2",
+                section: 'V2 Tiers',
+                mod: "nuv2",
+		
+		challengeDefault: true,
+		rated: true,
+		challengeShow: true,
+		searchShow: true,
+		isTeambuilderFormat: true,
+                ruleset: ['Standard', 'Team Preview','Evasion Abilities Clause', 'Team Preview'],
+                banlist: ['RU','UU','OU','BL1','Uber','BL3']
+        },
+	ruv2: {
+                effectType: 'Format',
+                name: "ruv2",
+                section: 'V2 Tiers',
+                mod: "nuv2",
+		
+		challengeDefault: true,
+		rated: true,
+		challengeShow: true,
+		searchShow: true,
+		isTeambuilderFormat: true,
+                ruleset: ['Standard', 'Team Preview','Evasion Abilities Clause', 'Team Preview'],
+                banlist: ['BL2','UU','BL1','OU','Uber']
+        },
+	uuv2: {
+                effectType: 'Format',
+                name: "uuv2",
+                section: 'V2 Tiers',
+                mod: "nuv2",
+		
+		challengeDefault: true,
+		rated: true,
+		challengeShow: true,
+		searchShow: true,
+		isTeambuilderFormat: true,
+                ruleset: ['Standard', 'Team Preview','Evasion Abilities Clause', 'Team Preview'],
+                banlist: ['BL1','OU','Uber']
+        },
+        		statswap: {
+                effectType: 'Format',
+                name: "Stat Swap",
+                section: 'thepowerhouse Metas',
+                mod: "statswap",
+		
+		challengeDefault: true,
+		rated: true,
+		challengeShow: true,
+		searchShow: true,
+		isTeambuilderFormat: true,
+                ruleset: ['Standard', 'Team Preview','Evasion Abilities Clause', 'Team Preview'],
+                banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew', 'Kyurem', 'Kyurem-Black','Blaziken','Excadrill']
+	},
+        		statswapsuspecttest: {
+                effectType: 'Format',
+                name: "Stat Swap SUSPECT TEST",
+                section: 'thepowerhouse Metas',
+                mod: "statswap",
+		
+		challengeDefault: true,
+		rated: true,
+		challengeShow: true,
+		searchShow: true,
+		isTeambuilderFormat: true,
+                ruleset: ['Standard', 'Team Preview','Evasion Abilities Clause', 'Team Preview'],
+                banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew', 'Kyurem', 'Kyurem-Black','Latios']
+	},	
 	unratedrandombattle: {
 		name: "Unrated Random Battle",
 		section: "Singles",
