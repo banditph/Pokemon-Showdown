@@ -72,7 +72,7 @@ exports.BattleFormats = {
                 ruleset: ['Standard', 'Team Preview','Evasion Abilities Clause', 'Team Preview'],
                 banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew', 'Kyurem', 'Kyurem-Black','Blaziken','Excadrill']
 	},
-		statswapsuspect: {
+        		statswapsuspecttest: {
                 effectType: 'Format',
                 name: "Stat Swap SUSPECT TEST",
                 section: 'thepowerhouse Metas',
