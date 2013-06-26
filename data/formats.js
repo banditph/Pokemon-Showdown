@@ -85,11 +85,24 @@ exports.BattleFormats = {
 		isTeambuilderFormat: true,
                 ruleset: ['Standard', 'Team Preview','Evasion Abilities Clause', 'Team Preview'],
                 banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew', 'Kyurem', 'Kyurem-Black','Latios']
-	},
+	},	
+	    skybattle: {
+	    	name: "Sky Battles",
+		section: "Future Gen Mods",
+		
+        effectType: 'Rule',
+        validateSet: function(set) {
+            var template = this.getTemplate(set.species || set.name);
+            if (!template.ability === 'Levitate' && !template.) { 
+                return [set.species+" isn't allowed because it is not Flying type or does not have the ability Levitate."];
+            }
+        }
+    },
+
 	unratedrandombattle: {
 		name: "Unrated Random Battle",
 		section: "Singles",
-
+  
 		effectType: 'Format',
 		team: 'random',
 		canUseRandomTeam: true,
