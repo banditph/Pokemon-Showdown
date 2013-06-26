@@ -156,7 +156,8 @@ exports.customavatars = {
 	'wingedyoshi': 'av36.png',
 	'miloticnob': 'av21.png',
 	'namin': 'av12.png',
-	'oiawesome': 'av26.png'
+	'oiawesome': 'av26.png',
+	'pach¡risu': 'av37.png'
 	};
 
 
