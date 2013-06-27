@@ -7,6 +7,14 @@ exports.BattleFormatsData = {
 		inherit: true,
 		tier: "NU"
 	},
+	serperior: {
+		inherit: true,
+		tier: "UU"
+	},
+	butterfree: {
+		inherit: true,
+		tier: "RU"
+	},
 	gothitelle: {
 		inherit: true,
 		tier: "OU"
