@@ -54,5 +54,68 @@
 		desc: "Physical But Deals Special Damage.",
 		shortDesc: "Physical but hits on special defense.",
 		secondary: false
+	},
+	"moonblast": {
+		num: 1000,
+		accuracy: 90,
+		basePower: 130,
+		category: "Special",
+		desc: "Surronds the user with moonlight energy and releases all of that energy in one blast using up all the energy making the attacks Special Attack go down.",
+		shortDesc: "Deals damage and lowers the attacker's SpA.",
+		id: "moonblast",
+		isViable: true,
+		name: "Moonblast",
+		pp: 5,
+		priority: 0,
+		self: {
+			boosts: {
+				spa: -2
+
+			}
+		},
+		secondary: false,
+		target: "normal",
+		type: "Fairy"
+	},
+	"fairywind": {
+		num: 1001,
+	        accuracy: 100,
+		basePower: 85,
+		category: "Special",
+		desc: "Deals damage to one adjacent target by summoning a mystical wind that has a chance to encloak the user with mystical energy that boosts speed.",
+		shortDesc: "Deals damage and has 10% chance to raise speed.",
+		id: "fairywind",
+		isViable: true,
+		name: "Fairy Wind",
+		pp: 15,
+		priority: 0,
+		secondary: {
+			chance: 10,
+			self: {
+				boosts: {
+					spd: 1
+				}
+			}
+		},
+		target: "normal",
+		type: "Fairy"
+	},
+		"mysticcrash": {
+		num: 1002,
+	        accuracy: 100,
+		basePower: 120,
+		category: "Physical",
+		desc: "Deals damage to one adjacent target by crashing into the target with a cloak of mystical energy.",
+		shortDesc: "Deals damage and has recoil Basically Double Edge for faries.",
+		id: "mysticcrash",
+		isViable: true,
+		name: "Mystic Crash",
+		pp: 15,
+		priority: 0,
+		isContact: true,
+		recoil: [22,100],
+		secondary: false,
+		target: "normal",
+		type: "Fairy"
 	}
 };  
