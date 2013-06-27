@@ -16,12 +16,11 @@ exports.BattleFormats = {
 		searchShow: true,
 		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod']
 	},
-		nuv2: {
+	nuv2: {
                 effectType: 'Format',
-                name: "nuv2",
-                section: 'V2 Tiers',
+                name: "NUv2",
+                section: 'V2 Project',
                 mod: "nuv2",
-		
 		challengeDefault: true,
 		rated: true,
 		challengeShow: true,
@@ -32,10 +31,9 @@ exports.BattleFormats = {
         },
 	ruv2: {
                 effectType: 'Format',
-                name: "ruv2",
-                section: 'V2 Tiers',
+                name: "RUv2",
+                section: 'V2 Project',
                 mod: "nuv2",
-		
 		challengeDefault: true,
 		rated: true,
 		challengeShow: true,
@@ -46,10 +44,9 @@ exports.BattleFormats = {
         },
 	uuv2: {
                 effectType: 'Format',
-                name: "uuv2",
-                section: 'V2 Tiers',
+                name: "UUv2",
+                section: 'V2 Project',
                 mod: "nuv2",
-		
 		challengeDefault: true,
 		rated: true,
 		challengeShow: true,
@@ -58,47 +55,6 @@ exports.BattleFormats = {
                 ruleset: ['Standard', 'Team Preview','Evasion Abilities Clause', 'Team Preview'],
                 banlist: ['BL1','OU','Uber']
         },
-        		statswap: {
-                effectType: 'Format',
-                name: "Stat Swap",
-                section: 'thepowerhouse Metas',
-                mod: "statswap",
-		
-		challengeDefault: true,
-		rated: true,
-		challengeShow: true,
-		searchShow: true,
-		isTeambuilderFormat: true,
-                ruleset: ['Standard', 'Team Preview','Evasion Abilities Clause', 'Team Preview'],
-                banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew', 'Kyurem', 'Kyurem-Black','Blaziken','Excadrill']
-	},
-        		statswapsuspecttest: {
-                effectType: 'Format',
-                name: "Stat Swap SUSPECT TEST",
-                section: 'thepowerhouse Metas',
-                mod: "statswap",
-		
-		challengeDefault: true,
-		rated: true,
-		challengeShow: true,
-		searchShow: true,
-		isTeambuilderFormat: true,
-                ruleset: ['Standard', 'Team Preview','Evasion Abilities Clause', 'Team Preview'],
-                banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew', 'Kyurem', 'Kyurem-Black','Latios']
-	},
-		skybattleou: {
-		name: "Sky Battle OU",
-		section: "thepowerhouse Metas",
-
-		effectType: 'Format',
-		challengeDefault: true,
-		rated: true,
-		challengeShow: true,
-		searchShow: true,
-		isTeambuilderFormat: true,
-		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview','Sky Battle Clause'],
-		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew']
-	},
 	unratedrandombattle: {
 		name: "Unrated Random Battle",
 		section: "Singles",
@@ -148,19 +104,6 @@ exports.BattleFormats = {
 		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
 		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew', 'Landorus']
 	},
-	// ounostealthrock: {
-	// 	name: "OU (no Stealth Rock)",
-	// 	section: "Singles",
-
-	// 	effectType: 'Format',
-	// 	challengeDefault: true,
-	// 	rated: true,
-	// 	challengeShow: true,
-	// 	searchShow: true,
-	// 	isTeambuilderFormat: true,
-	// 	ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
-	// 	banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew', 'Stealth Rock']
-	// },
 	ubers: {
 		name: "Ubers",
 		section: "Singles",
@@ -604,6 +547,16 @@ exports.BattleFormats = {
 		ruleset: ['Pokemon', 'Standard DW', 'Team Preview'],
 		banlist: []
 	},
+	pu: {
+		name: "PU",
+		section: "Other Metas",
+
+		effectType: 'Format',
+		challengeShow: true,
+		isTeambuilderFormat: true,
+		ruleset: ['NU'],
+		banlist: ["Charizard", "Wartortle", "Kadabra", "Golem", "Haunter", "Exeggutor", "Weezing", "Kangaskhan", "Pinsir", "Lapras", "Ampharos", "Misdreavus", "Piloswine", "Miltank", "Ludicolo", "Swellow", "Gardevoir", "Ninjask", "Torkoal", "Cacturne", "Altaria", "Armaldo", "Gorebyss", "Regirock", "Regice", "Bastiodon", "Floatzel", "Drifblim", "Skuntank", "Lickilicky", "Probopass", "Rotom-Fan", "Samurott", "Musharna", "Gurdurr", "Sawk", "Carracosta", "Garbodor", "Sawsbuck", "Alomomola", "Golurk", "Braviary", "Articuno", "Electabuzz", "Electrode", "Marowak", "Liepard", "Tangela", "Eelektross", "Ditto", "Seismitoad", "Zangoose", "Roselia", "Zebstrika", "Serperior", "Metang", "Tauros", "Torterra", "Cradily", "Primeape", "Munchlax", "Scolipede", "Jynx"]
+	},
 	tiershift: {
 		name: "Tier Shift",
 		section: 'Other Metagames',
@@ -619,7 +572,7 @@ exports.BattleFormats = {
 	},
 	ubershift: {
 		name: "Uber Shift",
-		section: 'thepowerhouse Metas',
+		section: 'Local Metagames',
 
 		mod: 'ubershift',
 		effectType: 'Format',
@@ -630,17 +583,34 @@ exports.BattleFormats = {
 		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
 		banlist: ['Pokemon']
 	},
-	pu: {
-		name: "PU",
-		section: "Other Metas",
-
-		effectType: 'Format',
+	statswap: {
+                effectType: 'Format',
+                name: "Stat Swap",
+                section: 'Local Metagames',
+                mod: "statswap",
+		
+		challengeDefault: true,
+		rated: true,
 		challengeShow: true,
+		searchShow: true,
 		isTeambuilderFormat: true,
-		ruleset: ['NU'],
-		banlist: ["Charizard", "Wartortle", "Kadabra", "Golem", "Haunter", "Exeggutor", "Weezing", "Kangaskhan", "Pinsir", "Lapras", "Ampharos", "Misdreavus", "Piloswine", "Miltank", "Ludicolo", "Swellow", "Gardevoir", "Ninjask", "Torkoal", "Cacturne", "Altaria", "Armaldo", "Gorebyss", "Regirock", "Regice", "Bastiodon", "Floatzel", "Drifblim", "Skuntank", "Lickilicky", "Probopass", "Rotom-Fan", "Samurott", "Musharna", "Gurdurr", "Sawk", "Carracosta", "Garbodor", "Sawsbuck", "Alomomola", "Golurk", "Braviary", "Articuno", "Electabuzz", "Electrode", "Marowak", "Liepard", "Tangela", "Eelektross", "Ditto", "Seismitoad", "Zangoose", "Roselia", "Zebstrika", "Serperior", "Metang", "Tauros", "Torterra", "Cradily", "Primeape", "Munchlax", "Scolipede", "Jynx"]
+                ruleset: ['Standard', 'Team Preview','Evasion Abilities Clause', 'Team Preview'],
+                banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew', 'Kyurem', 'Kyurem-Black','Blaziken','Excadrill']
 	},
-
+        		statswapsuspecttest: {
+                effectType: 'Format',
+                name: "Stat Swap [Suspect Test]",
+                section: 'Local Metagames',
+                mod: "statswap",
+		
+		challengeDefault: true,
+		rated: true,
+		challengeShow: true,
+		searchShow: true,
+		isTeambuilderFormat: true,
+                ruleset: ['Standard', 'Team Preview','Evasion Abilities Clause', 'Team Preview'],
+                banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew', 'Kyurem', 'Kyurem-Black','Latios']
+	},
 	// Past Generations
 	///////////////////////////////////////////////////////////////////
 
@@ -737,13 +707,6 @@ exports.BattleFormats = {
 		ruleset: ['Pokemon']
 	},
 
-
-	standardnext: {
-		effectType: 'Banlist',
-		ruleset: ['Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'HP Percentage Mod'],
-		banlist: ['Unreleased', 'Illegal', 'Double Team']
-	},
-
 	// Rulesets
 	///////////////////////////////////////////////////////////////////
 
@@ -761,6 +724,11 @@ exports.BattleFormats = {
 		effectType: 'Banlist',
 		ruleset: ['Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Evasion Moves Clause', 'HP Percentage Mod'],
 		banlist: ['Illegal', 'Moody']
+	},
+	standardnext: {
+		effectType: 'Banlist',
+		ruleset: ['Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'HP Percentage Mod'],
+		banlist: ['Unreleased', 'Illegal', 'Double Team']
 	},
 	pokemon: {
 		effectType: 'Banlist',
@@ -950,18 +918,6 @@ exports.BattleFormats = {
 			}
 		}
 	},
-	skybattleclause: {
-                effectType: 'Rule',
-                validateSet: function(set) {
-                        var template = this.getTemplate(set.species || set.name);
-                        if (!template.ability === 'Levitate' && !template.) { 
-                                return [set.species+" cannot Levitate."];
-                        }
-                       if (!template.type === 'Flying' && !template.) { 
-                return [set.species+" isn't allowed because it is not Flying type."];
-                        }
-                }
-        },
 	speciesclause: {
 		effectType: 'Rule',
 		onStart: function() {
