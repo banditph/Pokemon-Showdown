@@ -156,7 +156,7 @@ exports.customavatars = {
 	'wingedyoshi': 'av36.png',
 	'miloticnob': 'av21.png',
 	'namin': 'av12.png',
-	'oiawesome': 'http://i1289.photobucket.com/albums/b505/Oiaweomse99/CUSTOMAVATAR_zps905a9cf9.png',
+	'oiawesome': 'av19.png',
 	'pach¡risu': 'av37.png'
 	};
 
