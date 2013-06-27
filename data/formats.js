@@ -42,6 +42,19 @@ exports.BattleFormats = {
                 ruleset: ['Standard', 'Team Preview','Evasion Abilities Clause', 'Team Preview'],
                 banlist: ['BL1','OU','Uber']
         },
+        	skybattle: {
+		name: "Sky Battle OU",
+		section: "Singles",
+
+		effectType: 'Format',
+		challengeDefault: true,
+		rated: true,
+		challengeShow: true,
+		searchShow: true,
+		isTeambuilderFormat: true,
+		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview','Sky Battle Clause'],
+		banlist: ['Uber','Soul Dew']
+	},
 	unratedrandombattle: {
 		name: "Unrated Random Battle",
 		section: "Singles",
@@ -918,6 +931,18 @@ exports.BattleFormats = {
 			}
 		}
 	},
+	skybattleclause: {
+                effectType: 'Rule',
+                validateSet: function(set) {
+                        var template = this.getTemplate(set.species || set.name);
+                        if (!template.ability === 'Levitate' && !template.) { 
+                                return [set.species+" cannot Levitate."];
+                        }
+                       if (!template.type === 'Flying' && !template.) { 
+                return [set.species+" isn't allowed because it is not Flying type."];
+                        }
+                }
+        },
 	speciesclause: {
 		effectType: 'Rule',
 		onStart: function() {
