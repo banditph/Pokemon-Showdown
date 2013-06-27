@@ -91,6 +91,20 @@ exports.BattleFormats = {
 		searchShow: true,
 		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod']
 	},
+	nohaxrandbats: {
+		name: "No hax random battle",
+		section: "Singles",
+
+		effectType: 'Format',
+		team: 'random',
+		canUseRandomTeam: true,
+		searchDefault: true,
+		rated: true,
+		challengeShow: true,
+		searchShow: true,
+		willCrit: false, 
+		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod']
+	},	
 	ou: {
 		name: "OU",
 		section: "Singles",
