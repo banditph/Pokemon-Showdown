@@ -41,4 +41,6 @@ tornadus:{num:641,species:"Tornadus",baseForme:"Incarnate",types:["Flying","Figh
 ninetales:{num:38,species:"Ninetales",types:["Fire"],genderRatio:{M:0.25,F:0.75},baseStats:{hp:85,atk:45,def:85,spa:110,spd:75,spe:105},abilities:{0:"Drought",1:"Magic Bounce",DW:"Telepathy"},heightm:1.1,weightkg:19.9,color:"Yellow",prevo:"vulpix",evoLevel:1,eggGroups:["Ground"]},
 politoed:{num:186,species:"Politoed",types:["Water","Grass"],baseStats:{hp:105,atk:30,def:80,spa:95,spd:105,spe:50},abilities:{0:"Drizzle",1:"Chlorophyll",DW:"Storm Drain"},heightm:1.1,weightkg:33.9,color:"Green",prevo:"poliwhirl",evoLevel:25,eggGroups:["Water 1"]},
 gliscor:{num:472,species:"Gliscor",types:["Ground","Flying"],baseStats:{hp:105,atk:100,def:130,spa:45,spd:60,spe:101},abilities:{0:"Poison Heal",1:"Sand Stream",DW:"Intimidate"},heightm:2,weightkg:42.5,color:"Purple",prevo:"gligar",evoLevel:2,eggGroups:["Bug"]},
+victini:{num:494,species:"Victini",types:["Fairy","Fire"],gender:"N",baseStats:{hp:100,atk:100,def:100,spa:100,spd:100,spe:100},abilities:{0:"Victory Star"},heightm:0.4,weightkg:4,color:"Yellow",eggGroups:["No Eggs"]},
+celebi:{num:251,species:"Celebi",types:["Fairy","Grass"],gender:"N",baseStats:{hp:100,atk:100,def:100,spa:100,spd:100,spe:100},abilities:{0:"Natural Cure"},heightm:0.6,weightkg:5,color:"Green",eggGroups:["No Eggs"]},
 };
