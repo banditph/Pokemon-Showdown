@@ -15,6 +15,10 @@ exports.BattleFormatsData = {
 		inherit: true,
 		tier: "RU"
 	},
+	celebi: {
+		inherit: true,
+		tier: "UU"
+	},
 	gothitelle: {
 		inherit: true,
 		tier: "OU"
