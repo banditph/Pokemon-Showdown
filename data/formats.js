@@ -42,9 +42,22 @@ exports.BattleFormats = {
                 ruleset: ['Standard', 'Team Preview','Evasion Abilities Clause', 'Team Preview'],
                 banlist: ['BL1','OU','Uber']
         },
+        	skybattlesv2: {
+		name: "Sky Battles V2",
+		section: "V2 Project",
+                mod: "nuv2",
+		effectType: 'Format',
+		challengeDefault: true,
+		rated: true,
+		challengeShow: true,
+		searchShow: true,
+		isTeambuilderFormat: true,
+		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview','Sky Battle Clause'],
+		banlist: ['Uber','Soul Dew']
+	},
         	skybattle: {
 		name: "Sky Battle OU",
-		section: "Singles",
+		section: "X and Y",
 
 		effectType: 'Format',
 		challengeDefault: true,
