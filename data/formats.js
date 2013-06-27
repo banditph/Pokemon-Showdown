@@ -103,6 +103,7 @@ exports.BattleFormats = {
 		challengeShow: true,
 		searchShow: true,
 		willCrit: false, 
+		secondary: false,
 		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod']
 	},	
 	ou: {
