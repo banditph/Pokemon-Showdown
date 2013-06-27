@@ -620,7 +620,7 @@ viewround: 'vr',
 		}
 		targetUser.popup(user.name+' has awarded you $100. '+target);
 		this.addModCommand(''+targetUser.name+' was awarded $100 by '+user.name+'.');
-		winnings += 100;
+		 targetUser.winnings += 100;
 		user.balance += winnings;
 		return winnings = 0;
 	},
@@ -635,7 +635,7 @@ viewround: 'vr',
 		}
 		targetUser.popup(user.name+' has awarded you $500. Good job!'+target);
 		this.addModCommand(''+targetUser.name+' was awarded $500 by '+user.name+'.');
-		winnings += 500;
+		 targetUser.winnings += 500;
 		user.balance += winnings;
 		return winnings = 0;
 	},
@@ -650,7 +650,7 @@ viewround: 'vr',
 		}
 		targetUser.popup(user.name+' has awarded you $1000. Amazing!'+target);
 		this.addModCommand(''+targetUser.name+' was awarded $1000 by '+user.name+'.');
-		winnings += 1000;
+		 targetUser.winnings += 1000;
 		user.balance += winnings;
 		return winnings = 0;
 	},
@@ -665,14 +665,14 @@ viewround: 'vr',
 		}
 		targetUser.popup(user.name+' has awarded you $5000 for winning the tournament, congratulations!'+target);
 		this.addModCommand(''+targetUser.name+' was awarded $5000 by '+user.name+', since he/she won the tournament.');
-		winnings += 5000;
+		 targetUser.winnings += 5000;
 		user.balance += winnings;
 		return winnings = 0;
 	},
 	bigmoney: function(target, room, user) {
 		var targetUser = this.targetUser;
 		if (this.can('ban', targetUser)) {
-			winnings += 1000000;
+			 targetUser.winnings += 1000000;
 			user.balance += winnings;
 			return winnings = 0;
 		} else {
@@ -694,7 +694,7 @@ viewround: 'vr',
 			}
 			this.addModCommand(''+user.name+' has purchased voice.');
 			this.sendReply('You have successfully purchased voice. Please wait while an Administrator promotes you. If you do not get promoted, please remind or contact an Administrator to promote you.');
-			winnings -= 100000;
+			 targetUser.winnings -= 100000;
 			user.balance += winnings;
 			return winnings = 0;
 		}
@@ -703,7 +703,7 @@ viewround: 'vr',
 			if (user.balance < 1000) {
 				return this.sendReply('You do not have enough balance to make this purchase.');
 			}
-			winnings -= 1000;
+			 targetUser.winnings -= 1000;
 			var chance = Math.floor(Math.random() * 100);
 			var chance2 = Math.floor(Math.random() * 10000);
 			var chance3 = Math.floor(Math.random() * 1000);
