@@ -180,5 +180,8 @@ exports.BattleScripts = {
 			this.data.Learnsets.celebi.learnset.fairywind = ['5L0'];
 			this.data.Learnsets.celebi.learnset.moonblast = ['5L0'];
 			this.data.Learnsets.celebi.learnset.lunardance = ['5L0'];
+			
+			this.data.Learnsets.victini.learnset.lunardance = ['5L0'];
+			this.data.Learnsets.victini.learnset.mysticcrash = ['5L0'];
 		}
 };
