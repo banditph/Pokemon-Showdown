@@ -3,19 +3,6 @@ exports.BattleFormats = {
 	// Singles
 	///////////////////////////////////////////////////////////////////
 
-	randombattle: {
-		name: "Random Battle",
-		section: "Singles",
-
-		effectType: 'Format',
-		team: 'random',
-		canUseRandomTeam: true,
-		searchDefault: true,
-		rated: true,
-		challengeShow: true,
-		searchShow: true,
-		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod']
-	},
 	nuv2: {
                 effectType: 'Format',
                 name: "NUv2",
@@ -64,7 +51,20 @@ exports.BattleFormats = {
 		canUseRandomTeam: true,
 		searchShow: true,
 		ruleset: ['Random Battle']
-	},	
+	},
+	randombattle: {
+		name: "Random Battle",
+		section: "Singles",
+
+		effectType: 'Format',
+		team: 'random',
+		canUseRandomTeam: true,
+		searchDefault: true,
+		rated: true,
+		challengeShow: true,
+		searchShow: true,
+		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod']
+	},
 	ou: {
 		name: "OU",
 		section: "Singles",
