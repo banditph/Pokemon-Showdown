@@ -3,13 +3,13 @@ exports.BattleScripts = {
                 for (var i in this.data.FormatsData)
                         this.data.FormatsData[i].dreamWorldRelease = true;
                         
-  		this.data.Learnsets.serperior.learnset.zenheadbutt = ['5L0'];
-			this.data.Learnsets.serperior.learnset.psychoboost = ['5L0'];
 			this.data.Learnsets.serperior.learnset.naturepower = ['5L0'];
 			this.data.Learnsets.serperior.learnset.earthpower = ['5L0'];
 			this.data.Learnsets.serperior.learnset.lunardance = ['5L0'];
 			this.data.Learnsets.serperior.learnset.psyshock = ['5L0'];
 			this.data.Learnsets.serperior.learnset.aurasphere = ['5L0'];
+			this.data.Learnsets.serperior.learnset.fairywind = ['5L0'];
+			this.data.Learnsets.serperior.learnset.moonblast = ['5L0'];
 
 			this.data.Learnsets.articuno.learnset.airslash = ['5L0'];
 			this.data.Learnsets.articuno.learnset.earthpower = ['5L0'];
@@ -176,5 +176,9 @@ exports.BattleScripts = {
 			this.data.Learnsets.gliscor.learnset.rockblast = ['5L0'];
 			this.data.Learnsets.gliscor.learnset.bravebird = ['5L0'];
 			this.data.Learnsets.gliscor.learnset.pursuit = ['5L0'];
+			
+			this.data.Learnsets.celebi.learnset.fairywind = ['5L0'];
+			this.data.Learnsets.celebi.learnset.moonblast = ['5L0'];
+			this.data.Learnsets.celebi.learnset.lunardance = ['5L0'];
 		}
 };
