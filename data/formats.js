@@ -57,7 +57,7 @@ exports.BattleFormats = {
 	},
         	skybattle: {
 		name: "Sky Battle OU",
-		section: "X and Y",
+		section: "Singles",
 
 		effectType: 'Format',
 		challengeDefault: true,
